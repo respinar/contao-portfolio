@@ -34,6 +34,7 @@ ClassLoader::addClasses(array
 	'portfolio\ModulePortfolioProjectList'    => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',
 	'portfolio\ModulePortfolioCustomerDetail' => 'system/modules/portfolio/modules/ModulePortfolioCustomerDetail.php',
 	'portfolio\ModulePortfolioCustomerList'   => 'system/modules/portfolio/modules/ModulePortfolioCustomerList.php',
+	'portfolio\ModulePortfolioProjectDetail'  => 'system/modules/portfolio/modules/ModulePortfolioProjectDetail.php',
 ));
 
 
@@ -42,11 +43,10 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_customers_detail' => 'system/modules/portfolio/templates/customer',
-	'mod_customers_empty'  => 'system/modules/portfolio/templates/customer',
-	'mod_customers_list'   => 'system/modules/portfolio/templates/customer',
-	'mod_project_detail'   => 'system/modules/portfolio/templates/project',
-	'mod_prjoect_detail'   => 'system/modules/portfolio/templates/project',
-	'mod_project_empty'    => 'system/modules/portfolio/templates/project',
-	'mod_projects_list'    => 'system/modules/portfolio/templates/project',
+	'mod_portfolio_customer_detail' => 'system/modules/portfolio/templates/customer',
+	'mod_portfolio_customer_list'   => 'system/modules/portfolio/templates/customer',
+	'mod_portfolio_customer_empty'  => 'system/modules/portfolio/templates/customer',
+	'mod_portfolio_project_detail'  => 'system/modules/portfolio/templates/project',
+	'mod_portfolio_project_empty'   => 'system/modules/portfolio/templates/project',
+	'mod_portfolio_project_list'    => 'system/modules/portfolio/templates/project',
 ));

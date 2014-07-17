@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_portfolio_project',
+		'ptable'                      => 'tl_portfolio_customer',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -229,7 +229,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array
  */
-class tl_customers_project extends Backend
+class tl_portfolio_project extends Backend
 {
 
 	/**
@@ -302,7 +302,7 @@ class tl_customers_project extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_portfolio_project SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
 		$this->createNewVersion('tl_portfolio_project', $intId);
@@ -362,7 +362,7 @@ class tl_customers_project extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_porfolio_project SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
 		$this->createNewVersion('tl_portfolio_project', $intId);
