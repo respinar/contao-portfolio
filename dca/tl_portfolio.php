@@ -99,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('protected'),
-		'default'                     => '{title_legend},title;{redirect_legend},jumpTo;{protected_legend:hide},protected;'
+		'default'                     => '{title_legend},title;{redirect_legend},jumpToCustomer,jumpToProject;{protected_legend:hide},protected;'
 	),
 
 	// Subpalettes
@@ -128,9 +128,19 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
-		'jumpTo' => array
+		'jumpToCustomer' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpTo'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToCustomer'],
+			'exclude'                 => true,
+			'inputType'               => 'pageTree',
+			'foreignKey'              => 'tl_page.title',
+			'eval'                    => array('mandatory'=>true, 'fieldType'=>'radio'),
+			'sql'                     => "int(10) unsigned NOT NULL default '0'",
+			'relation'                => array('type'=>'hasOne', 'load'=>'eager')
+		),
+		'jumpToProject' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToProject'],
 			'exclude'                 => true,
 			'inputType'               => 'pageTree',
 			'foreignKey'              => 'tl_page.title',

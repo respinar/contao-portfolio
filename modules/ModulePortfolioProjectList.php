@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -44,7 +44,7 @@ class ModulePortfolioProjectList extends \Module
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['customers_project_list'][0]) . ' ###';
+			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['portfolio_project_list'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -53,10 +53,10 @@ class ModulePortfolioProjectList extends \Module
 			return $objTemplate->parse();
 		}
 
-		// Show the customers detail if an item has been selected
-		if ($this->customers_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
+		// Show the project detail if an item has been selected
+		if ($this->project_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
 		{
-			return $this->getFrontendModule($this->customers_detailModule, $this->strColumn);
+			return $this->getFrontendModule($this->project_detailModule, $this->strColumn);
 		}
 
 		return parent::generate();
@@ -77,12 +77,12 @@ class ModulePortfolioProjectList extends \Module
 			$limit = $this->numberOfItems;
 		}
 
-		// Handle featured customers
-		if ($this->customers_featured == 'feature_customers')
+		// Handle featured projects
+		if ($this->projects_featured == 'feature_projects')
 		{
 			$blnFeatured = true;
 		}
-		elseif ($this->customers_featured == 'unfeature_customers')
+		elseif ($this->projects_featured == 'unfeature_projects')
 		{
 			$blnFeatured = false;
 		}
@@ -91,17 +91,17 @@ class ModulePortfolioProjectList extends \Module
 			$blnFeatured = null;
 		}
 
-		$intTotal = \CustomersModel::countPublishedByPid($this->customers_category,$blnFeatured);
+		$intTotal = \PortfolioProjectModel::countPublishedByPid($this->portfolio_category,$blnFeatured);
 
-		// Return if no Customers were found
+		// Return if no Projects were found
 		if ($intTotal < 1)
 		{
-			$this->Template = new \FrontendTemplate('mod_customers_empty');
-			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyCustomers'];
+			$this->Template = new \FrontendTemplate('mod_portfolio_project_empty');
+			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyProject'];
 			return;
 		}
 
-		$objCustomersCategory = $this->Database->prepare("SELECT * FROM tl_customers_category WHERE id=?")->execute($this->customers_category);
+		$objPortfolio = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->portfolio_category);
 
 		$total=$intTotal - $offset;
 
@@ -149,19 +149,19 @@ class ModulePortfolioProjectList extends \Module
 		// Get the items
 		if (isset($limit))
 		{
-			$objCustomers = \CustomersModel::findPublishedByPid($this->customers_category, $blnFeatured, $limit, $offset);
+			$objProjects = \PorfolioProjectModel::findPublishedByPid($this->portfolio_category, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objCustomers = \CustomersModel::findPublishedByPid($this->customers_category, $blnFeatured, 0, $offset);
+			$objProjects = \PorfolioProjectModel::findPublishedByPid($this->portfolio_category, $blnFeatured, 0, $offset);
 		}
 
 		$strLink = '';
 
 		// Generate a jumpTo link
-		if ($objCustomersCategory->jumpTo > 0)
+		if ($objPortfolio->jumpToProject > 0)
 		{
-			$objJump = \PageModel::findByPk($objCustomersCategory->jumpTo);
+			$objJump = \PageModel::findByPk($objPortfolio->jumpToProject);
 
 			if ($objJump !== null)
 			{
@@ -171,13 +171,13 @@ class ModulePortfolioProjectList extends \Module
 
 		$size = deserialize($this->imgSize);
 
-		$arrCustomers = array();
+		$arrProjectList = array();
 
-		// Generate Customers
-		while ($objCustomers->next())
+		// Generate Projects
+		while ($objProjects->next())
 		{
 			$strImage = '';
-			$objImage = \FilesModel::findByPk($objCustomers->singleSRC);
+			$objImage = \FilesModel::findByPk($objProjects->singleSRC);
 
 			// Add image
 			if ($objImage !== null)
@@ -185,15 +185,15 @@ class ModulePortfolioProjectList extends \Module
 				$strImage = \Image::getHtml(\Image::get($objImage->path, $size[0], $size[1], $size[2]));
 			}
 
-			$arrCustomers[] = array
+			$arrProjectList[] = array
 			(
-				'title' => $objCustomers->title,
+				'title' => $objProjects->title,
 				'image' => $strImage,
-				'link' => strlen($strLink) ? sprintf($strLink, $objCustomers->alias) : ''
+				'link' => strlen($strLink) ? sprintf($strLink, $objProjects->alias) : ''
 			);
 		}
 
-		$this->Template->customers = $arrCustomers;
+		$this->Template->projects = $arrProjectList;
 
 	}
 }

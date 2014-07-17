@@ -96,7 +96,7 @@ class ModulePortfolioCustomerList extends \Module
 		// Return if no Customers were found
 		if ($intTotal < 1)
 		{
-			$this->Template = new \FrontendTemplate('mod_customers_empty');
+			$this->Template = new \FrontendTemplate('mod_portfolio_customer_empty');
 			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyCustomers'];
 			return;
 		}
@@ -159,9 +159,9 @@ class ModulePortfolioCustomerList extends \Module
 		$strLink = '';
 
 		// Generate a jumpTo link
-		if ($Portfolio->jumpTo > 0)
+		if ($objPortfolio->jumpToCustomer > 0)
 		{
-			$objJump = \PageModel::findByPk($Portfolio->jumpTo);
+			$objJump = \PageModel::findByPk($objPortfolio->jumpToCustomer);
 
 			if ($objJump !== null)
 			{

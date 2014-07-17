@@ -6,10 +6,10 @@
   <?php endif; ?>
 
   <div>
-  <?php foreach($this->customers as $customer): ?>
-	<div class="<?php echo $this->customerClass; ?>">
-		<?php echo $customer[image]; ?>
-		<h3><a href="<?php echo $customer[link] ?>"><?php echo $customer[title]; ?></a></h3>
+  <?php foreach($this->projects as $project): ?>
+	<div class="<?php echo $this->projectClass; ?>">
+		<?php echo $project[image]; ?>
+		<h3><a href="<?php echo $project[link] ?>"><?php echo $project[title]; ?></a></h3>
 	</div>
   <?php endforeach; ?>
   </div>

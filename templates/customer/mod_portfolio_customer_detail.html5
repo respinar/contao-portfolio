@@ -14,12 +14,10 @@
 	  <h2>پروژه‌ها</h2>
 	  <?php foreach ($this->projects as $project) { ?>
 	  <div class="project">
-		  <h3><?php echo $project[title]; ?></h3>
+		  <h3><a href="<?php echo $project[link] ?>"><?php echo $project[title]; ?></a></h3>
 		  <?php echo $project[image]; ?>
 		  <p><?php echo $project[year]; ?> - <?php echo $project[duration]; ?></p>
-		  <p><?php echo $project[status]; ?></p>
-		  <a href="<?php echo $project[URL]; ?>">آدرس وب‌سایت</a>
-		  <p><?php echo $project[description]; ?></p>
+		  <p><?php echo $project[status]; ?></p>		  
 	  </div>
 	  <?php } ?>
   </div>

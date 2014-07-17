@@ -19,7 +19,7 @@
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_list']   = '{title_legend},name,headline,type;{portfolio_legend},portfolio_category;{config_legend},customer_featured,customer_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,customerClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_detail'] = '{title_legend},name,headline,type;{template_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{title_legend},name,headline,type;{project_legend},project_type,projects_featured;{config_legend},projects_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{title_legend},name,headline,type;{portfolio_legend},portfolio_category;{project_legend},project_status,project_featured;{config_legend},projects_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail']  = '{title_legend},name,headline,type;{template_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 
@@ -77,13 +77,13 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['project_featured'] = array
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(20) NOT NULL default ''"
 );
-$GLOBALS['TL_DCA']['tl_module']['fields']['project_type'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['project_status'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['project_type'],
-	'default'                 => 'all_projects',
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['project_status'],
+	'default'                 => 'all',
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options'                 => array('all_projects', 'feature_projects', 'unfeature_projects'),
+	'options'                 => array('all','planed', 'started', 'completed'),
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(20) NOT NULL default ''"
@@ -98,9 +98,9 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['project_detailModule'] = array
 	'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
 );
-$GLOBALS['TL_DCA']['tl_module']['fields']['customerClass'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['projectClass'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['customerClass'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['projectClass'],
 	'exclude'                 => true,
 	'inputType'               => 'text',
 	'eval'                    => array('maxlength'=>128, 'tl_class'=>'w50'),

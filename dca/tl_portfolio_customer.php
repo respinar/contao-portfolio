@@ -120,7 +120,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias;{image_legend},singleSRC;{meta_legend},link;{description_legend:hide},description;{publish_legend},published,featured'
+		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},link;{publish_legend},published,featured'
 	),
 
 	// Fields

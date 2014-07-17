@@ -108,7 +108,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias;{image_legend},singleSRC;{meta_legend},year,duration,status,link;{description_legend:hide},description;{publish_legend},published,featured'
+		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},year,duration,status,link;{publish_legend},published,featured'
 	),
 
 	// Fields
@@ -362,7 +362,7 @@ class tl_portfolio_project extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_porfolio_project SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_portfolio_project SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
 		$this->createNewVersion('tl_portfolio_project', $intId);

@@ -79,6 +79,8 @@ class ModulePortfolioCustomerDetail extends \Module
 
 		$objCustomer = $this->Database->prepare("SELECT * FROM tl_portfolio_customer WHERE alias=?")->execute(\Input::get('items'));
 
+		$objPortfolio = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($objCustomer->pid);
+
 		// Return if no Customer were found
 		if (!$objCustomer->numRows)
 		{
@@ -107,6 +109,17 @@ class ModulePortfolioCustomerDetail extends \Module
 
 		$objPage->pageTitle = $objCustomer->title;
 
+		// Generate a jumpTo link
+		if ($objPortfolio->jumpToProject > 0)
+		{
+			$objJump = \PageModel::findByPk($objPortfolio->jumpToProject);
+
+			if ($objJump !== null)
+			{
+				$strLink = $this->generateFrontendUrl($objJump->row(), ($GLOBALS['TL_CONFIG']['useAutoItem'] ? '/%s' : '/items/%s'));
+			}
+		}
+
 		$arrProjectsList = array();
 
 		while ($objProjects->next())
@@ -134,6 +147,7 @@ class ModulePortfolioCustomerDetail extends \Module
 				'URL'         => $objProjects->URL,
 				'description' => $objProjects->description,
 				'image'       => $strImage,
+				'link'        => strlen($strLink) ? sprintf($strLink, $objProjects->alias) : ''
 			);
 		}
 
