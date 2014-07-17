@@ -54,9 +54,9 @@ class ModulePortfolioCustomerList extends \Module
 		}
 
 		// Show the customers detail if an item has been selected
-		if ($this->customers_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
+		if ($this->customer_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
 		{
-			return $this->getFrontendModule($this->customers_detailModule, $this->strColumn);
+			return $this->getFrontendModule($this->customer_detailModule, $this->strColumn);
 		}
 
 		return parent::generate();
@@ -91,7 +91,7 @@ class ModulePortfolioCustomerList extends \Module
 			$blnFeatured = null;
 		}
 
-		$intTotal = \CustomersModel::countPublishedByPid($this->customers_category,$blnFeatured);
+		$intTotal = \PortfolioCustomerModel::countPublishedByPid($this->portfolio_category,$blnFeatured);
 
 		// Return if no Customers were found
 		if ($intTotal < 1)
@@ -101,7 +101,7 @@ class ModulePortfolioCustomerList extends \Module
 			return;
 		}
 
-		$objCustomersCategory = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->customers_category);
+		$objPortfolio = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->portfolio_category);
 
 		$total=$intTotal - $offset;
 
@@ -149,19 +149,19 @@ class ModulePortfolioCustomerList extends \Module
 		// Get the items
 		if (isset($limit))
 		{
-			$objCustomers = \CustomersModel::findPublishedByPid($this->customers_category, $blnFeatured, $limit, $offset);
+			$objCustomers = \PortfolioCustomerModel::findPublishedByPid($this->portfolio_category, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objCustomers = \CustomersModel::findPublishedByPid($this->customers_category, $blnFeatured, 0, $offset);
+			$objCustomers = \PortfolioCustomerModel::findPublishedByPid($this->portfolio_category, $blnFeatured, 0, $offset);
 		}
 
 		$strLink = '';
 
 		// Generate a jumpTo link
-		if ($objCustomersCategory->jumpTo > 0)
+		if ($Portfolio->jumpTo > 0)
 		{
-			$objJump = \PageModel::findByPk($objCustomersCategory->jumpTo);
+			$objJump = \PageModel::findByPk($Portfolio->jumpTo);
 
 			if ($objJump !== null)
 			{

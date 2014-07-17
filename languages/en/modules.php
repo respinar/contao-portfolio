@@ -20,7 +20,7 @@ $GLOBALS['TL_LANG']['MOD']['portfolio']        = array('Portfolio', 'Manage cust
 /**
  * Front end modules
  */
-$GLOBALS['TL_LANG']['FMD']['portfolio']        = 'Portfolio';
+$GLOBALS['TL_LANG']['FMD']['portfolio']                 = 'Portfolio';
 $GLOBALS['TL_LANG']['FMD']['portfolio_customer_list']   = array('Customers list', '');
 $GLOBALS['TL_LANG']['FMD']['portfolio_customer_detail'] = array('Customer detail', '');
 $GLOBALS['TL_LANG']['FMD']['portfolio_project_list']    = array('Projects list', '');

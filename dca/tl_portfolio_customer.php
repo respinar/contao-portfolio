@@ -13,7 +13,7 @@
 
 
 /**
- * Table tl_customers
+ * Table tl_portfolio_customer
  */
 $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 (
@@ -212,7 +212,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array
  */
-class tl_customers extends Backend
+class tl_portfolio_customer extends Backend
 {
 
 	/**

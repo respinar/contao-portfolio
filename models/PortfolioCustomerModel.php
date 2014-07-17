@@ -24,7 +24,7 @@ namespace portfolio;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class PortfolioCustomersModel extends \Model
+class PortfolioCustomerModel extends \Model
 {
 
 	/**

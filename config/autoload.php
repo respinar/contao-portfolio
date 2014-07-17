@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2014 Leo Feyer
  *
- * @package Customers
+ * @package Portfolio
  * @link    https://contao.org
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  */
@@ -26,12 +26,14 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Models
-	'customers\CustomersModel'         => 'system/modules/customers/models/CustomersModel.php',
-	'customers\CustomersCategoryModel' => 'system/modules/customers/models/CustomersCategoryModel.php',
+	'portfolio\PortfolioCustomerModel'        => 'system/modules/portfolio/models/PortfolioCustomerModel.php',
+	'portfolio\PortfolioModel'                => 'system/modules/portfolio/models/PortfolioModel.php',
+	'portfolio\PortfolioProjectModel'         => 'system/modules/portfolio/models/PortfolioProjectModel.php',
 
 	// Modules
-	'customers\ModuleCustomersDetail'  => 'system/modules/customers/modules/ModuleCustomersDetail.php',
-	'customers\ModuleCustomersList'    => 'system/modules/customers/modules/ModuleCustomersList.php',
+	'portfolio\ModulePortfolioProjectList'    => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',
+	'portfolio\ModulePortfolioCustomerDetail' => 'system/modules/portfolio/modules/ModulePortfolioCustomerDetail.php',
+	'portfolio\ModulePortfolioCustomerList'   => 'system/modules/portfolio/modules/ModulePortfolioCustomerList.php',
 ));
 
 
@@ -40,7 +42,11 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_customers_list'   => 'system/modules/customers/templates',
-	'mod_customers_empty'  => 'system/modules/customers/templates',
-	'mod_customers_detail' => 'system/modules/customers/templates',
+	'mod_customers_detail' => 'system/modules/portfolio/templates/customer',
+	'mod_customers_empty'  => 'system/modules/portfolio/templates/customer',
+	'mod_customers_list'   => 'system/modules/portfolio/templates/customer',
+	'mod_project_detail'   => 'system/modules/portfolio/templates/project',
+	'mod_prjoect_detail'   => 'system/modules/portfolio/templates/project',
+	'mod_project_empty'    => 'system/modules/portfolio/templates/project',
+	'mod_projects_list'    => 'system/modules/portfolio/templates/project',
 ));
