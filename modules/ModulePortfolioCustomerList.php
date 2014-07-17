@@ -15,24 +15,24 @@
 /**
  * Namespace
  */
-namespace customers;
+namespace portfolio;
 
 
 /**
- * Class ModuleCustomersList
+ * Class ModulePortfolioCustomerList
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModuleCustomersList extends \Module
+class ModulePortfolioCustomerList extends \Module
 {
 
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'mod_customers_list';
+	protected $strTemplate = 'mod_portfolio_customer_list';
 
 	/**
 	 * Display a wildcard in the back end
@@ -101,7 +101,7 @@ class ModuleCustomersList extends \Module
 			return;
 		}
 
-		$objCustomersCategory = $this->Database->prepare("SELECT * FROM tl_customers_category WHERE id=?")->execute($this->customers_category);
+		$objCustomersCategory = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->customers_category);
 
 		$total=$intTotal - $offset;
 

@@ -15,24 +15,24 @@
 /**
  * Namespace
  */
-namespace customers;
+namespace portfolio;
 
 
 /**
- * Class ModuleCustomersDetail
+ * Class ModulePortfolioCustomerDetail
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModuleCustomersDetail extends \Module
+class ModulePortfolioCustomerDetail extends \Module
 {
 
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'mod_customers_detail';
+	protected $strTemplate = 'mod_portfolio_customer_detail';
 
 	/**
 	 * Display a wildcard in the back end
@@ -77,7 +77,7 @@ class ModuleCustomersDetail extends \Module
 
 		global $objPage;
 
-		$objCustomer = $this->Database->prepare("SELECT * FROM tl_customers WHERE alias=?")->execute(\Input::get('items'));
+		$objCustomer = $this->Database->prepare("SELECT * FROM tl_portfolio_customer WHERE alias=?")->execute(\Input::get('items'));
 
 		// Return if no Customer were found
 		if (!$objCustomer->numRows)
@@ -85,7 +85,7 @@ class ModuleCustomersDetail extends \Module
 			return;
 		}
 
-		$objProjects = $this->Database->prepare("SELECT * FROM tl_customers_project WHERE pid=?")->execute($objCustomer->id);
+		$objProjects = $this->Database->prepare("SELECT * FROM tl_portfolio_project WHERE pid=?")->execute($objCustomer->id);
 
 		$strLink = '';
 

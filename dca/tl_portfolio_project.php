@@ -15,14 +15,14 @@
 /**
  * Table tl_customers_project
  */
-$GLOBALS['TL_DCA']['tl_customers_project'] = array
+$GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 (
 
 	// Config
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_customers',
+		'ptable'                      => 'tl_portfolio_project',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -43,7 +43,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 			'fields'                  => array('sorting'),
 			'headerFields'            => array('title'),
 			'panelLayout'             => 'search,limit',
-			'child_record_callback'   => array('tl_customers_project', 'generateItemRow')
+			'child_record_callback'   => array('tl_portfolio_project', 'generateItemRow')
 		),
 		'global_operations' => array
 		(
@@ -59,46 +59,46 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['edit'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['edit'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['copy'],
 				'href'                => 'act=paste&amp;mode=copy',
 				'icon'                => 'copy.gif'
 			),
 			'cut' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['cut'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['cut'],
 				'href'                => 'act=paste&amp;mode=cut',
 				'icon'                => 'cut.gif'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'toggle' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['toggle'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['toggle'],
 				'icon'                => 'visible.gif',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('tl_customers', 'toggleIcon')
+				'button_callback'     => array('tl_portfolio_project', 'toggleIcon')
 			),
 			'feature' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['feature'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['feature'],
 				'icon'                => 'featured.gif',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleFeature(this,%s)"',
-				'button_callback'     => array('tl_customers', 'iconFeature')
+				'button_callback'     => array('tl_portfolio_project', 'iconFeature')
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.gif'
 			)
@@ -132,7 +132,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'title' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['title'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['title'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -141,7 +141,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'alias' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['alias'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['alias'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -150,7 +150,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'singleSRC' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['singleSRC'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
 			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
@@ -158,7 +158,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'link' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['link'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['link'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -167,7 +167,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'year' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['year_start'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['year_start'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -176,7 +176,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'duration' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['duration'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['duration'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -185,7 +185,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'status' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['status'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['status'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'select',
@@ -196,7 +196,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'description' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['description'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['description'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'textarea',
@@ -205,7 +205,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'published' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['published'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['published'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'flag'                    => 1,
@@ -215,7 +215,7 @@ $GLOBALS['TL_DCA']['tl_customers_project'] = array
 		),
 		'featured' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_project']['featured'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['featured'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'flag'                    => 1,
@@ -289,12 +289,12 @@ class tl_customers_project extends Backend
 		//	$this->redirect('contao/main.php?act=error');
 		//}
 
-		$this->createInitialVersion('tl_customers', $intId);
+		$this->createInitialVersion('tl_portfolio_project', $intId);
 
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_customers']['fields']['published']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_project']['fields']['published']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_customers']['fields']['published']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_portfolio_project']['fields']['published']['save_callback'] as $callback)
 			{
 				$this->import($callback[0]);
 				$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, $this);
@@ -305,7 +305,7 @@ class tl_customers_project extends Backend
 		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->createNewVersion('tl_customers', $intId);
+		$this->createNewVersion('tl_portfolio_project', $intId);
 
 	}
 
@@ -349,12 +349,12 @@ class tl_customers_project extends Backend
 		//	$this->redirect('contao/main.php?act=error');
 		//}
 
-		$this->createInitialVersion('tl_customers', $intId);
+		$this->createInitialVersion('tl_portfolio_project', $intId);
 
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_customers']['fields']['featured']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_project']['fields']['featured']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_customers']['fields']['featured']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_portfolio_project']['fields']['featured']['save_callback'] as $callback)
 			{
 				$this->import($callback[0]);
 				$blnFeature = $this->$callback[0]->$callback[1]($blnFeature, $this);
@@ -365,7 +365,7 @@ class tl_customers_project extends Backend
 		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->createNewVersion('tl_customers', $intId);
+		$this->createNewVersion('tl_portfolio_project', $intId);
 
 	}
 

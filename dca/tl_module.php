@@ -16,13 +16,18 @@
  * Add palettes to tl_module
  */
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['customers_list']   = '{title_legend},name,headline,type;{customers},customers_category;{config_legend},customers_featured,customers_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,customerClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['customers_detail'] = '{title_legend},name,headline,type;{template_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_list']   = '{title_legend},name,headline,type;{customer_legend},customers_category;{config_legend},customers_featured,customers_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,customerClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_detail'] = '{title_legend},name,headline,type;{template_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']   = '{title_legend},name,headline,type;{project_legend},project_type,projects_featured;{config_legend},projects_detailModule;{template_legend:hide},numberOfItems,perPage,imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail'] = '{title_legend},name,headline,type;{template_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+
+
 
 /**
  * Add fields to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['fields']['customers_category'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['customer_category'] = array
 (
 	'label'                => &$GLOBALS['TL_LANG']['tl_module']['customers_category'],
 	'exclude'              => true,
@@ -31,9 +36,9 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['customers_category'] = array
 	'eval'                 => array('multiple'=>true, 'mandatory'=>true),
     'sql'                  => "blob NULL"
 );
-$GLOBALS['TL_DCA']['tl_module']['fields']['customers_featured'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['customer_featured'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['customers_featured'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['customer_featured'],
 	'default'                 => 'all_customers',
 	'exclude'                 => true,
 	'inputType'               => 'select',
@@ -42,12 +47,12 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['customers_featured'] = array
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(20) NOT NULL default ''"
 );
-$GLOBALS['TL_DCA']['tl_module']['fields']['customers_detailModule'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['customer_detailModule'] = array
 (
-	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['customers_detailModule'],
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['customer_detailModule'],
 	'exclude'                 => true,
 	'inputType'               => 'select',
-	'options_callback'        => array('tl_module_customers', 'getReaderModules'),
+	'options_callback'        => array('tl_module_customer', 'getReaderModules'),
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module'],
 	'eval'                    => array('includeBlankOption'=>true, 'tl_class'=>'w50'),
 	'sql'                     => "int(10) unsigned NOT NULL default '0'"
@@ -71,7 +76,7 @@ class tl_module_customers extends Backend
 	public function getReaderModules()
 	{
 		$arrModules = array();
-		$objModules = $this->Database->execute("SELECT m.id, m.name, t.name AS theme FROM tl_module m LEFT JOIN tl_theme t ON m.pid=t.id WHERE m.type='customers_detail' ORDER BY t.name, m.name");
+		$objModules = $this->Database->execute("SELECT m.id, m.name, t.name AS theme FROM tl_module m LEFT JOIN tl_theme t ON m.pid=t.id WHERE m.type='portfolio_customer_detail' ORDER BY t.name, m.name");
 
 		while ($objModules->next())
 		{

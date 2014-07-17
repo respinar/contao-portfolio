@@ -15,23 +15,23 @@
 /**
  * Namespace
  */
-namespace customers;
+namespace portfolio;
 
 /**
- * Class CustomersModel
+ * Class PortfolioCustomersModel
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class CustomersModel extends \Model
+class PortfolioCustomersModel extends \Model
 {
 
 	/**
 	 * Name of the table
 	 * @var string
 	 */
-	protected static $strTable = 'tl_customers';
+	protected static $strTable = 'tl_portfolio_customer';
 
 	/**
 	 * Count published customers items by their parent ID

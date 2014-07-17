@@ -15,23 +15,23 @@
 /**
  * Namespace
  */
-namespace customers;
+namespace portfolio;
 
 /**
- * Class CustomersCategoryModel
+ * Class PortfolioModel
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class CustomersCategoryModel extends \Model
+class PortfolioModel extends \Model
 {
 
 	/**
 	 * Name of the table
 	 * @var string
 	 */
-	protected static $strTable = 'tl_customers_category';
+	protected static $strTable = 'tl_portfolio';
 
 	public static function findPublishedById($intId)
 	{

@@ -17,10 +17,10 @@
  */
 array_insert($GLOBALS['BE_MOD']['content'], 1, array
 (
-	'customers' => array
+	'portfolio' => array
 	(
-		'tables' => array('tl_customers_category','tl_customers','tl_customers_project'),
-		'icon'   => 'system/modules/customers/assets/icon.png'
+		'tables' => array('tl_portfolio','tl_portfolio_customer','tl_portfolio_project'),
+		'icon'   => 'system/modules/portfolio/assets/icon.png'
 	)
 ));
 
@@ -31,10 +31,12 @@ array_insert($GLOBALS['BE_MOD']['content'], 1, array
 
 array_insert($GLOBALS['FE_MOD'], 2, array
 (
-	'customers' => array
+	'portfolio' => array
 	(
-        'customers_list'    => 'ModuleCustomersList',
-		'customers_detail'  => 'ModuleCustomersDetail'
+        'portfolio_customer_list'   => 'ModulePortfolioCustomerList',
+		'portfolio_customer_detail' => 'ModulePortfolioCustomerDetail',
+		'portfolio_project_list'    => 'ModulePortfolioProjectList',
+		'portfolio_project_detail'  => 'ModulePortfolioProjectDetail'
 	)
 ));
 

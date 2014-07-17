@@ -1,9 +1,9 @@
 {
-    "name": "respinar/portfolio",
-    "description":"Portfolio module for Contao",
-    "keywords":["contao","portfolio","customer","projects"],
+    "name": "respinar/customers",
+    "description":"Customers and Projects module for Contao",
+    "keywords":["contao", "customer","projects"],
     "type": "contao-module",
-    "homepage":"https://github.com/respinar/portfolio",
+    "homepage":"https://github.com/respinar/customers",
     "license":"LGPL-3.0+",
     "authors":[
         {
@@ -14,7 +14,7 @@
         }
     ],
     "support":{
-        "issues":"https://github.com/respinar/portfolio/issues"
+        "issues":"https://github.com/respinar/customers/issues"
     },
     "require": {
         "contao/core": ">=3.2,<4-dev",
@@ -26,7 +26,7 @@
     "extra": {
         "contao": {
             "sources": {
-                "": "system/modules/portfolio"
+                "": "system/modules/customers"
             }
         }
     }

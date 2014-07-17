@@ -13,16 +13,16 @@
 
 
 /**
- * Table tl_customers_category
+ * Table tl_portfolio
  */
-$GLOBALS['TL_DCA']['tl_customers_category'] = array
+$GLOBALS['TL_DCA']['tl_portfolio'] = array
 (
 
 	// Config
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ctable'                      => 'tl_customers',
+		'ctable'                      => 'tl_portfolio_customer',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		(
 			'fields'                  => array('title'),
 			'format'                  => '%s',
-			//'label_callback'          => array('tl_customers_category', 'addCustomersCount')
+			//'label_callback'          => array('tl_portfolio', 'addCustomersCount')
 		),
 		'global_operations' => array
 		(
@@ -63,32 +63,32 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers_category']['edit'],
-				'href'                => 'table=tl_customers',
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['edit'],
+				'href'                => 'table=tl_portfolio_customer',
 				'icon'                => 'edit.gif'
 			),
 			'editheader' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers_category']['editheader'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['editheader'],
 				'href'                => 'act=edit',
 				'icon'                => 'header.gif'
 			),
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers_category']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['copy'],
 				'href'                => 'act=copy',
 				'icon'                => 'copy.gif'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers_category']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_customers_category']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.gif'
 			)
@@ -121,7 +121,7 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		),
 		'title' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_category']['title'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['title'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -130,7 +130,7 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		),
 		'jumpTo' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_category']['jumpTo'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpTo'],
 			'exclude'                 => true,
 			'inputType'               => 'pageTree',
 			'foreignKey'              => 'tl_page.title',
@@ -140,7 +140,7 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		),
 		'protected' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_category']['protected'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['protected'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('submitOnChange'=>true),
@@ -148,7 +148,7 @@ $GLOBALS['TL_DCA']['tl_customers_category'] = array
 		),
 		'groups' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_customers_category']['groups'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['groups'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'foreignKey'              => 'tl_member_group.name',
