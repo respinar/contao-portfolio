@@ -261,7 +261,7 @@ class tl_portfolio_customer extends Backend
 
 		if ($objImage !== null)
 		{
-			$strImage = \Image::getHtml(\Image::get($objImage->path, '60', '60', 'center_center'));
+			$strImage = \Image::getHtml(\Image::get($objImage->path, '30', '30', 'center_center'));
 		}
 
 		return '<div><div style="float:left; margin-right:10px;">'.$strImage.'</div>'. $arrRow['title'] . '</div>';
