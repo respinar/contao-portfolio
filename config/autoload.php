@@ -35,6 +35,10 @@ ClassLoader::addClasses(array
 	'portfolio\ModulePortfolioCustomerDetail' => 'system/modules/portfolio/modules/ModulePortfolioCustomerDetail.php',
 	'portfolio\ModulePortfolioCustomerList'   => 'system/modules/portfolio/modules/ModulePortfolioCustomerList.php',
 	'portfolio\ModulePortfolioProjectDetail'  => 'system/modules/portfolio/modules/ModulePortfolioProjectDetail.php',
+	'portfolio\ModulePortfolio'               => 'system/modules/portfolio/modules/ModulePortfolio.php',
+
+	// Classes
+	'Contao\Portfolio'                        => 'system/modules/portfolio/classes/Portfolio.php',
 ));
 
 
@@ -43,10 +47,12 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_portfolio_customer_detail' => 'system/modules/portfolio/templates/customer',
-	'mod_portfolio_customer_list'   => 'system/modules/portfolio/templates/customer',
-	'mod_portfolio_customer_empty'  => 'system/modules/portfolio/templates/customer',
-	'mod_portfolio_project_detail'  => 'system/modules/portfolio/templates/project',
-	'mod_portfolio_project_empty'   => 'system/modules/portfolio/templates/project',
-	'mod_portfolio_project_list'    => 'system/modules/portfolio/templates/project',
+	'customer_full'                 => 'system/modules/portfolio/templates/customer',
+	'customer_short'                => 'system/modules/portfolio/templates/customer',
+	'project_full'                  => 'system/modules/portfolio/templates/project',
+	'project_short'                 => 'system/modules/portfolio/templates/project',
+	'mod_portfolio_customer_detail' => 'system/modules/portfolio/templates/modules',
+	'mod_portfolio_customer_list'   => 'system/modules/portfolio/templates/modules',
+	'mod_portfolio_project_detail'  => 'system/modules/portfolio/templates/modules',
+	'mod_portfolio_project_list'    => 'system/modules/portfolio/templates/modules',
 ));
