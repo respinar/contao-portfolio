@@ -25,7 +25,7 @@ namespace portfolio;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioProjectDetail extends \Module
+class ModulePortfolioProjectDetail extends \ModulePortfolio
 {
 
 	/**
@@ -116,8 +116,8 @@ class ModulePortfolioProjectDetail extends \Module
 			$objImage = \FilesModel::findByPk($objProjects->singleSRC);
 
 			// Add photo image
-			if ($objImage !== null)  
-			{ 
+			if ($objImage !== null)
+			{
 				$strImage = \Image::getHtml(\Image::get($objImage->path, '300', '300', 'center_center'));
 			}
 

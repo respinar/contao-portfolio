@@ -25,7 +25,7 @@ namespace portfolio;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioCustomerList extends \Module
+class ModulePortfolioCustomerList extends \ModulePortfolio
 {
 
 	/**
