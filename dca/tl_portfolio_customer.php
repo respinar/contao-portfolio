@@ -24,13 +24,15 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_portfolio',
 		'ctable'                      => 'tl_portfolio_project',
+        'switchToEdit'                => true,
 		'enableVersioning'            => true,
 		'sql' => array
 		(
 			'keys' => array
 			(
 				'id'  => 'primary',
-				'pid' => 'index'
+				'pid' => 'index',
+                'alias' => 'index'
 			)
 		)
 	),
@@ -41,9 +43,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		'sorting' => array
 		(
 			'mode'                    => 1,
-			'flag'                    => 1, 
-			'fields'                  => array('title'),			
-			'panelLayout'             => 'filter,limit'			
+			'flag'                    => 1,
+			'fields'                  => array('title'),
+			'panelLayout'             => 'filter,limit'
 		),
 		'label' => array
 		(
@@ -120,7 +122,14 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},link;{publish_legend},published,featured'
+        '__selector__'                => array('addImage'),
+		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},addImage;{meta_legend},link;{publish_legend},published,featured,start,stop'
+	),
+
+    // Subpalettes
+	'subpalettes' => array
+	(
+		'addImage'                    => 'singleSRC',
 	),
 
 	// Fields
@@ -132,7 +141,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'pid' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+            'foreignKey'              => 'tl_portfolio.title',
+			'sql'                     => "int(10) unsigned NOT NULL default '0'",
+            'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),
 		'sorting' => array
 		(
@@ -159,6 +170,14 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
+		),
+        'addImage' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addImage'],
+			'exclude'                 => true,
+			'inputType'               => 'checkbox',
+			'eval'                    => array('submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'singleSRC' => array
 		(
@@ -205,6 +224,22 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'inputType'               => 'checkbox',
 			'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50'),
 			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'start' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['start'],
+			'exclude'                 => true,
+			'inputType'               => 'text',
+			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
+		),
+		'stop' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['stop'],
+			'exclude'                 => true,
+			'inputType'               => 'text',
+			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		)
 	)
 );

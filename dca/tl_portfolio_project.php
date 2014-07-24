@@ -29,7 +29,8 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'keys' => array
 			(
 				'id'  => 'primary',
-				'pid' => 'index'
+				'pid' => 'index',
+                'alias' => 'index'
 			)
 		)
 	),
@@ -40,7 +41,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 		'sorting' => array
 		(
 			'mode'                    => 4,
-			'fields'                  => array('sorting'),
+			'fields'                  => array('date DESC'),
 			'headerFields'            => array('title'),
 			'panelLayout'             => 'search,limit',
 			'child_record_callback'   => array('tl_portfolio_project', 'generateItemRow')
@@ -108,7 +109,14 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},year,duration,status,link;{publish_legend},published,featured'
+        '__selector__'                => array('addImage'),
+		'default'                     => '{title_legend},title,alias,status,date;{description_legend},description;{image_legend},addImage;{meta_legend},link,duration;{publish_legend},published,featured,start,stop'
+	),
+
+    // Subpalettes
+	'subpalettes' => array
+	(
+		'addImage'                    => 'singleSRC',
 	),
 
 	// Fields
@@ -120,11 +128,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 		),
 		'pid' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
-		),
-		'sorting' => array
-		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+            'foreignKey'              => 'tl_portfolio_customer.title',
+			'sql'                     => "int(10) unsigned NOT NULL default '0'",
+            'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),
 		'tstamp' => array
 		(
@@ -148,6 +154,26 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
 		),
+        'date' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['date'],
+			'default'                 => time(),
+			'exclude'                 => true,
+			'filter'                  => true,
+			'sorting'                 => true,
+			'flag'                    => 8,
+			'inputType'               => 'text',
+			'eval'                    => array('rgxp'=>'date', 'doNotCopy'=>true, 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		),
+        'addImage' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['addImage'],
+			'exclude'                 => true,
+			'inputType'               => 'checkbox',
+			'eval'                    => array('submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
 		'singleSRC' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC'],
@@ -164,15 +190,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>false, 'rgxp'=>'url', 'maxlength'=>255, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
-		),
-		'year' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['year_start'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>false, 'rgxp'=>'digit','maxlength'=>4, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(4) NOT NULL default ''"
 		),
 		'duration' => array
 		(
@@ -222,6 +239,22 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'inputType'               => 'checkbox',
 			'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50'),
 			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'start' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['start'],
+			'exclude'                 => true,
+			'inputType'               => 'text',
+			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
+		),
+		'stop' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['stop'],
+			'exclude'                 => true,
+			'inputType'               => 'text',
+			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+			'sql'                     => "varchar(10) NOT NULL default ''"
 		)
 	)
 );
