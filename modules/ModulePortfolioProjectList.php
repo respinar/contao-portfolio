@@ -53,6 +53,14 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 			return $objTemplate->parse();
 		}
 
+		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+
+		// No portfolio categories available
+		if (!is_array($this->portfolio_categories) || empty($this->portfolio_categories))
+		{
+			return '';
+		}
+
 		// Show the project detail if an item has been selected
 		if ($this->project_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
 		{
@@ -69,6 +77,7 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 	protected function compile()
 	{
 
+		$offset = intval($this->skipFirst);
 		$limit = null;
 
 		// Maximum number of items
@@ -91,17 +100,17 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 			$blnFeatured = null;
 		}
 
-		$intTotal = \PortfolioProjectModel::countPublishedByPid($this->portfolio_category,$blnFeatured);
+		$this->Template->projects = array();
+		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
+
+		$intTotal = \PortfolioProjectModel::countPublishedByPid($this->portfolio_categories,$blnFeatured);
+
 
 		// Return if no Projects were found
 		if ($intTotal < 1)
 		{
-			$this->Template = new \FrontendTemplate('mod_portfolio_project_empty');
-			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyProject'];
 			return;
 		}
-
-		$objPortfolio = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->portfolio_category);
 
 		$total=$intTotal - $offset;
 
@@ -156,44 +165,12 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 			$objProjects = \PorfolioProjectModel::findPublishedByPid($this->portfolio_category, $blnFeatured, 0, $offset);
 		}
 
-		$strLink = '';
-
-		// Generate a jumpTo link
-		if ($objPortfolio->jumpToProject > 0)
-		{
-			$objJump = \PageModel::findByPk($objPortfolio->jumpToProject);
-
-			if ($objJump !== null)
-			{
-				$strLink = $this->generateFrontendUrl($objJump->row(), ($GLOBALS['TL_CONFIG']['useAutoItem'] ? '/%s' : '/items/%s'));
-			}
+		// No items found
+		if ($objProjects !== null) {
+			$this->Template->projects = $this->parseCustomers($objProjects);
 		}
 
-		$size = deserialize($this->imgSize);
-
-		$arrProjectList = array();
-
-		// Generate Projects
-		while ($objProjects->next())
-		{
-			$strImage = '';
-			$objImage = \FilesModel::findByPk($objProjects->singleSRC);
-
-			// Add image
-			if ($objImage !== null)
-			{
-				$strImage = \Image::getHtml(\Image::get($objImage->path, $size[0], $size[1], $size[2]));
-			}
-
-			$arrProjectList[] = array
-			(
-				'title' => $objProjects->title,
-				'image' => $strImage,
-				'link' => strlen($strLink) ? sprintf($strLink, $objProjects->alias) : ''
-			);
-		}
-
-		$this->Template->projects = $arrProjectList;
+		$this->Template->portfolio_categories = $this->portfolio_categories;
 
 	}
 }

@@ -79,7 +79,6 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 
 		$offset = intval($this->skipFirst);
 		$limit = null;
-		$this->Template->articles = array();
 
 		// Maximum number of items
 		if ($this->numberOfItems > 0)
@@ -101,7 +100,7 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 			$blnFeatured = null;
 		}
 
-		$this->Template->articles = array();
+		$this->Template->projects = array();
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
 
 		// Get the total number of items

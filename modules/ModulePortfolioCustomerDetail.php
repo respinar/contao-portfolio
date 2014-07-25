@@ -82,12 +82,12 @@ class ModulePortfolioCustomerDetail extends \ModulePortfolio
 
 		global $objPage;
 
-		$this->Template->articles = '';
+		$this->Template->customer = '';
 		$this->Template->referer = 'javascript:history.go(-1)';
 		$this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
 
 
-		// Get the news item
+		// Get the customers item
 		$objCustomer = \PortfolioCustomerModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_categories);
 
 		if ($objCustomer === null)
@@ -105,11 +105,23 @@ class ModulePortfolioCustomerDetail extends \ModulePortfolio
 		$arrCustomer = $this->parseCustomer($objCustomer);
 		$this->Template->customers = $arrCustomer;
 
+		// Get the projects items
+		$objProjects = \PortfolioProjectModel::findPublishedByPid($objCustomer->id);
+
+		$this->Template->projects = '';
+
+		if ($objProjects !== null) {
+			$arrProjects = $this->parseProjects($objProjects);
+			$this->Template->projects = $arrProjects;
+		}
+
 		// Overwrite the page title (see #2853 and #4955)
 		if ($objCustomer->title != '')
 		{
 			$objPage->pageTitle = strip_tags(strip_insert_tags($objCustomer->title));
 		}
+
+
 
 	}
 }

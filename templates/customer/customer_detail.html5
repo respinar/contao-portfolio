@@ -1,14 +1,14 @@
 
 <div class="layout_full block<?php echo $this->class; ?>">
 
-  <h1><?php echo $this->newsHeadline; ?></h1>
+  <h1><?php echo $this->title; ?></h1>
 
   <?php if ($this->hasMetaFields): ?>
     <p class="info"><time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></p>
   <?php endif; ?>
 
-  <?php if ($this->title): ?>
-    <h2><?php echo $this->title; ?></h2>
+  <?php if ($this->description): ?>
+    <p><?php echo $this->description; ?></p>
   <?php endif; ?>
 
   <?php if ($this->addImage): ?>
@@ -29,10 +29,6 @@
       <?php endif; ?>
 
     </figure>
-  <?php endif; ?>
-
-  <?php if ($this->description): ?>
-    <p><?php echo $this->description; ?></p>
   <?php endif; ?>
 
   <?php if ($this->link): ?>

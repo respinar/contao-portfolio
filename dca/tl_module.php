@@ -17,10 +17,10 @@
  */
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_list']   = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{config_legend},customer_featured,customer_detailModule;{template_legend:hide},numberOfItems,perPage,skipFirst,customer_template,imgSize,customerClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_detail'] = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{template_legend:hide},customer_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_customer_detail'] = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{template_legend:hide},customer_template,imgSize;{project_legend},project_template,project_imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{project_legend},project_status,project_featured;{config_legend},projects_detailModule;{template_legend:hide},numberOfItems,perPage,skipFirst,project_template,imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail']  = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{template_legend:hide},project_template,imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{project_legend},project_status,project_featured;{config_legend},projects_detailModule;{template_legend:hide},numberOfItems,perPage,skipFirst,project_template,project_imgSize,projectClass;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail']  = '{title_legend},name,headline,type;{portfolio_legend},portfolio_categories;{template_legend:hide},project_template,project_imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 
 
@@ -124,6 +124,16 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['project_template'] = array
 	'options_callback'        => array('tl_module_portfolio', 'getProjectTemplates'),
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(32) NOT NULL default ''"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['project_imgSize'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['project_imgSize'],
+	'exclude'                 => true,
+	'inputType'               => 'imageSize',
+	'options'                 => $GLOBALS['TL_CROP'],
+	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+	'eval'                    => array('rgxp'=>'digit', 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
+	'sql'                     => "varchar(64) NOT NULL default ''"
 );
 
 class tl_module_portfolio extends Backend

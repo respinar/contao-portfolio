@@ -158,8 +158,6 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->category    = $objCustomer->getRelated('pid');
 
 		$objTemplate->count = $intCount; // see #5708
-		$objTemplate->text = '';
-
 
 		$objTemplate->addImage = false;
 
@@ -252,13 +250,13 @@ abstract class ModulePortfolio extends \Module
 				$arrProject = $objProject->row();
 
 				// Override the default image size
-				if ($this->imgSize != '')
+				if ($this->project_imgSize != '')
 				{
-					$size = deserialize($this->imgSize);
+					$size = deserialize($this->project_imgSize);
 
 					if ($size[0] > 0 || $size[1] > 0)
 					{
-						$arrProject['size'] = $this->imgSize;
+						$arrProject['size'] = $this->project_imgSize;
 					}
 				}
 
