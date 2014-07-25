@@ -1,0 +1,43 @@
+
+<div class="layout_full block<?php echo $this->class; ?>">
+
+  <h1><?php echo $this->newsHeadline; ?></h1>
+
+  <?php if ($this->hasMetaFields): ?>
+    <p class="info"><time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></p>
+  <?php endif; ?>
+
+  <?php if ($this->title): ?>
+    <h2><?php echo $this->title; ?></h2>
+  <?php endif; ?>
+
+  <?php if ($this->addImage): ?>
+    <figure class="image_container<?php echo $this->floatClass; ?>"<?php if ($this->margin): ?> style="<?php echo $this->margin; ?>"<?php endif; ?>>
+
+      <?php if ($this->href): ?>
+        <a href="<?php echo $this->href; ?>"<?php echo $this->attributes; ?> title="<?php echo $this->alt; ?>">
+      <?php endif; ?>
+
+      <img src="<?php echo $this->src; ?>"<?php echo $this->imgSize; ?> alt="<?php echo $this->alt; ?>">
+
+      <?php if ($this->href): ?>
+        </a>
+      <?php endif; ?>
+
+      <?php if ($this->caption): ?>
+        <figcaption class="caption" style="width:<?php echo $this->arrSize[0]; ?>px"><?php echo $this->caption; ?></figcaption>
+      <?php endif; ?>
+
+    </figure>
+  <?php endif; ?>
+
+  <?php if ($this->description): ?>
+    <p><?php echo $this->description; ?></p>
+  <?php endif; ?>
+
+  <?php if ($this->link): ?>
+    <a href="<?php echo $this->link; ?>"><?php echo $this->link; ?></a>
+  <?php endif; ?>
+
+
+</div>

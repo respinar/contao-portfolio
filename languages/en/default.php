@@ -19,4 +19,5 @@ $GLOBALS['TL_LANG']['MSC'][''] = '';
 
 $GLOBALS['TL_LANG']['MSC']['emptyCustomer'] = 'No customer found!';
 $GLOBALS['TL_LANG']['MSC']['emptyProject']  = 'No project found!';
+$GLOBALS['TL_LANG']['MSC']['moredetail']    = 'More detail';
 

@@ -28,8 +28,8 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 		(
 			'keys' => array
 			(
-				'id'  => 'primary',
-				'pid' => 'index',
+				'id'    => 'primary',
+				'pid'   => 'index',
                 'alias' => 'index'
 			)
 		)

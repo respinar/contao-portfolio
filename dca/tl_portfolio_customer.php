@@ -30,8 +30,8 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		(
 			'keys' => array
 			(
-				'id'  => 'primary',
-				'pid' => 'index',
+				'id'    => 'primary',
+				'pid'   => 'index',
                 'alias' => 'index'
 			)
 		)
@@ -44,8 +44,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		(
 			'mode'                    => 1,
 			'flag'                    => 1,
+			'headerFields'            => array('title'),
 			'fields'                  => array('title'),
-			'panelLayout'             => 'filter,limit'
+            'panelLayout'             => 'filter;sort,search,limit',
 		),
 		'label' => array
 		(

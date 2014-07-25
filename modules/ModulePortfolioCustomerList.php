@@ -53,6 +53,14 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 			return $objTemplate->parse();
 		}
 
+		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+
+		// No portfolio categories available
+		if (!is_array($this->portfolio_categories) || empty($this->portfolio_categories))
+		{
+			return '';
+		}
+
 		// Show the customers detail if an item has been selected
 		if ($this->customer_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
 		{
@@ -69,7 +77,9 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 	protected function compile()
 	{
 
+		$offset = intval($this->skipFirst);
 		$limit = null;
+		$this->Template->articles = array();
 
 		// Maximum number of items
 		if ($this->numberOfItems > 0)
@@ -77,12 +87,12 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 			$limit = $this->numberOfItems;
 		}
 
-		// Handle featured customers
-		if ($this->customers_featured == 'feature_customers')
+		// Handle featured news
+		if ($this->customer_featured == 'featured')
 		{
 			$blnFeatured = true;
 		}
-		elseif ($this->customers_featured == 'unfeature_customers')
+		elseif ($this->customer_featured == 'unfeatured')
 		{
 			$blnFeatured = false;
 		}
@@ -91,19 +101,19 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 			$blnFeatured = null;
 		}
 
-		$intTotal = \PortfolioCustomerModel::countPublishedByPid($this->portfolio_category,$blnFeatured);
+		$this->Template->articles = array();
+		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
 
-		// Return if no Customers were found
+		// Get the total number of items
+		$intTotal = \PortfolioCustomerModel::countPublishedByPids($this->portfolio_categories, $blnFeatured);
+
 		if ($intTotal < 1)
 		{
-			$this->Template = new \FrontendTemplate('mod_portfolio_customer_empty');
-			$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyCustomers'];
 			return;
 		}
 
-		$objPortfolio = $this->Database->prepare("SELECT * FROM tl_portfolio WHERE id=?")->execute($this->portfolio_category);
 
-		$total=$intTotal - $offset;
+		$total = $intTotal - $offset;
 
 		// Split the results
 		if ($this->perPage > 0 && (!isset($limit) || $this->numberOfItems > $this->perPage))
@@ -149,51 +159,19 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objCustomers = \PortfolioCustomerModel::findPublishedByPid($this->portfolio_category, $blnFeatured, $limit, $offset);
+			$objCustomers = \PortfolioCustomerModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objCustomers = \PortfolioCustomerModel::findPublishedByPid($this->portfolio_category, $blnFeatured, 0, $offset);
+			$objCustomers = \PortfolioCustomerModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
 		}
 
-		$strLink = '';
-
-		// Generate a jumpTo link
-		if ($objPortfolio->jumpToCustomer > 0)
-		{
-			$objJump = \PageModel::findByPk($objPortfolio->jumpToCustomer);
-
-			if ($objJump !== null)
-			{
-				$strLink = $this->generateFrontendUrl($objJump->row(), ($GLOBALS['TL_CONFIG']['useAutoItem'] ? '/%s' : '/items/%s'));
-			}
+		// No items found
+		if ($objCustomers !== null) {
+			$this->Template->customers = $this->parseCustomers($objCustomers);
 		}
 
-		$size = deserialize($this->imgSize);
-
-		$arrCustomers = array();
-
-		// Generate Customers
-		while ($objCustomers->next())
-		{
-			$strImage = '';
-			$objImage = \FilesModel::findByPk($objCustomers->singleSRC);
-
-			// Add image
-			if ($objImage !== null)
-			{
-				$strImage = \Image::getHtml(\Image::get($objImage->path, $size[0], $size[1], $size[2]));
-			}
-
-			$arrCustomers[] = array
-			(
-				'title' => $objCustomers->title,
-				'image' => $strImage,
-				'link' => strlen($strLink) ? sprintf($strLink, $objCustomers->alias) : ''
-			);
-		}
-
-		$this->Template->customers = $arrCustomers;
+		$this->Template->portfolio_categories = $this->portfolio_categories;
 
 	}
 }
