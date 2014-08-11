@@ -123,14 +123,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 	// Palettes
 	'palettes' => array
 	(
-        '__selector__'                => array('addImage'),
-		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},addImage;{meta_legend},link;{publish_legend},published,featured,start,stop'
-	),
-
-    // Subpalettes
-	'subpalettes' => array
-	(
-		'addImage'                    => 'singleSRC',
+		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},link;{publish_legend},published,featured,start,stop'
 	),
 
 	// Fields
@@ -171,14 +164,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
-		),
-        'addImage' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addImage'],
-			'exclude'                 => true,
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true),
-			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'singleSRC' => array
 		(

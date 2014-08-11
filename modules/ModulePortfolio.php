@@ -162,7 +162,7 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->addImage = false;
 
 		// Add an image
-		if ($objCustomer->addImage && $objCustomer->singleSRC != '')
+		if ($objCustomer->singleSRC != '')
 		{
 			$objModel = \FilesModel::findByUuid($objCustomer->singleSRC);
 
@@ -233,7 +233,7 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->addImage = false;
 
 		// Add an image
-		if ($objProject->addImage && $objProject->singleSRC != '')
+		if ($objProject->singleSRC != '')
 		{
 			$objModel = \FilesModel::findByUuid($objProject->singleSRC);
 

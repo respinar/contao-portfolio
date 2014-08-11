@@ -109,14 +109,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	// Palettes
 	'palettes' => array
 	(
-        '__selector__'                => array('addImage'),
-		'default'                     => '{title_legend},title,alias,status,date;{description_legend},description;{image_legend},addImage;{meta_legend},link,duration;{publish_legend},published,featured,start,stop'
-	),
-
-    // Subpalettes
-	'subpalettes' => array
-	(
-		'addImage'                    => 'singleSRC',
+		'default'                     => '{title_legend},title,alias,status,date;{description_legend},description;{image_legend},singleSRC;{meta_legend},link,duration;{publish_legend},published,featured,start,stop'
 	),
 
 	// Fields
@@ -165,14 +158,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'inputType'               => 'text',
 			'eval'                    => array('rgxp'=>'date', 'doNotCopy'=>true, 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
 			'sql'                     => "int(10) unsigned NOT NULL default '0'"
-		),
-        'addImage' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['addImage'],
-			'exclude'                 => true,
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true),
-			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'singleSRC' => array
 		(
