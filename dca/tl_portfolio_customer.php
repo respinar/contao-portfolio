@@ -68,15 +68,15 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['edit'],
-				'href'                => 'table=tl_portfolio_project',
-				'icon'                => 'edit.gif'
-			),
-			'editheader' => array
-			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['editheader'],
 				'href'                => 'act=edit',
-				'icon'                => 'header.gif'
+				'icon'                => 'edit.gif'
+			),
+			'projects' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['projects'],
+				'href'                => 'table=tl_portfolio_project',
+				'icon'                => 'system/modules/portfolio/assets/projects.png'
 			),
 			'copy' => array
 			(
