@@ -47,10 +47,10 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'customer_detail'               => 'system/modules/portfolio/templates/customer',
-	'customer_list'                 => 'system/modules/portfolio/templates/customer',
-	'project_detail'                => 'system/modules/portfolio/templates/project',
-	'project_list'                  => 'system/modules/portfolio/templates/project',
+	'customer_full'                 => 'system/modules/portfolio/templates/customer',
+	'customer_short'                => 'system/modules/portfolio/templates/customer',
+	'project_full'                  => 'system/modules/portfolio/templates/project',
+	'project_short'                 => 'system/modules/portfolio/templates/project',
 	'mod_portfolio_customer_detail' => 'system/modules/portfolio/templates/modules',
 	'mod_portfolio_customer_list'   => 'system/modules/portfolio/templates/modules',
 	'mod_portfolio_project_detail'  => 'system/modules/portfolio/templates/modules',

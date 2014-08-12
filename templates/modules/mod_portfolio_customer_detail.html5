@@ -4,7 +4,9 @@
 
   <?php echo $this->customers; ?>
 
+  <?php if($this->projects) { ?>
   <?php echo implode('', $this->projects); ?>
+  <?php } ?>
 
   <!-- indexer::stop -->
   <p class="back"><a href="<?php echo $this->referer; ?>" title="<?php echo $this->back; ?>"><?php echo $this->back; ?></a></p>

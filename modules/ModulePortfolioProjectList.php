@@ -101,10 +101,9 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		}
 
 		$this->Template->projects = array();
-		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
+		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyProjectList'];
 
-		$intTotal = \PortfolioProjectModel::countPublishedByPid($this->portfolio_categories,$blnFeatured);
-
+		$intTotal = \PortfolioProjectModel::countPublishedByPids($this->portfolio_categories,$blnFeatured);
 
 		// Return if no Projects were found
 		if ($intTotal < 1)
@@ -158,16 +157,16 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objProjects = \PorfolioProjectModel::findPublishedByPid($this->portfolio_category, $blnFeatured, $limit, $offset);
+			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objProjects = \PorfolioProjectModel::findPublishedByPid($this->portfolio_category, $blnFeatured, 0, $offset);
+			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found
 		if ($objProjects !== null) {
-			$this->Template->projects = $this->parseCustomers($objProjects);
+			$this->Template->projects = $this->parseProjects($objProjects);
 		}
 
 		$this->Template->portfolio_categories = $this->portfolio_categories;

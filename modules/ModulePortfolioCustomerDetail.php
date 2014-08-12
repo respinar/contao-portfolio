@@ -106,7 +106,7 @@ class ModulePortfolioCustomerDetail extends \ModulePortfolio
 		$this->Template->customers = $arrCustomer;
 
 		// Get the projects items
-		$objProjects = \PortfolioProjectModel::findPublishedByPid($objCustomer->id);
+		$objProjects = \PortfolioProjectModel::findPublishedByCustomerId($objCustomer->id);
 
 		$this->Template->projects = '';
 

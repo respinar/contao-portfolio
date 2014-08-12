@@ -54,14 +54,19 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		}
 
 		// Set the item from the auto_item parameter
-		if (!isset($_GET['items']) && $GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))
+		if (!isset($_GET['items']) && \Config::get('useAutoItem') && isset($_GET['auto_item']))
 		{
 			\Input::setGet('items', \Input::get('auto_item'));
 		}
 
-		// Return if there are no items
+		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+
+		// Do not index or cache the page if no customer item has been specified
 		if (!\Input::get('items'))
 		{
+			global $objPage;
+			$objPage->noSearch = 1;
+			$objPage->cache = 0;
 			return '';
 		}
 
@@ -77,67 +82,44 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 
 		global $objPage;
 
-		$objCustomer = $this->Database->prepare("SELECT * FROM tl_portfolio_customer WHERE alias=?")->execute(\Input::get('items'));
+		$this->Template->project = '';
+		$this->Template->referer = 'javascript:history.go(-1)';
+		$this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
 
-		// Return if no Customer were found
-		if (!$objCustomer->numRows)
+		// Get the Project item
+		$objProject = \PortfolioProjectModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_categories);
+
+		if ($objProject === null)
 		{
+			// Do not index or cache the page
+			$objPage->noSearch = 1;
+			$objPage->cache = 0;
+
+			// Send a 404 header
+			header('HTTP/1.1 404 Not Found');
+			$this->Template->projects = '<p class="error">' . sprintf($GLOBALS['TL_LANG']['MSC']['invalidPage'], \Input::get('items')) . '</p>';
 			return;
 		}
 
-		$objProjects = $this->Database->prepare("SELECT * FROM tl_portfolio_project WHERE pid=?")->execute($objCustomer->id);
+		$arrProject = $this->parseProject($objProject);
+		$this->Template->project = $arrProject;
 
-		$strLink = '';
+		echo $objProject->customerID;
 
-		$size = deserialize($this->imgSize);
+		// Get the Customer items
+		$objCustomer = \PortfolioCustomerModel::findPublishedByParentAndIdOrAlias($objProject->customerID,$this->portfolio_categories);
 
-		$strImage = '';
-		$objImage = \FilesModel::findByPk($objCustomer->singleSRC);
+		$this->Template->customer = '';
 
-		// Add image
-		if ($objImage !== null)
-		{
-			$strImage = \Image::getHtml(\Image::get($objImage->path, $size[0], $size[1], $size[2]));
+		if ($objCustomer !== null) {
+			$this->Template->customer = $this->parseCustomer($objCustomer);
 		}
 
-		$this->Template->title       = $objCustomer->title;
-		$this->Template->link        = $objCustomer->link;
-		$this->Template->image       = $strImage;
-		$this->Template->description = $objCustomer->description;
-
-		$objPage->pageTitle = $objCustomer->title;
-
-		$arrProjectsList = array();
-
-		while ($objProjects->next())
+		// Overwrite the page title (see #2853 and #4955)
+		if ($objProject->title != '')
 		{
-
-			$strImage = '';
-			$objImage = \FilesModel::findByPk($objProjects->singleSRC);
-
-			// Add photo image
-			if ($objImage !== null)
-			{
-				$strImage = \Image::getHtml(\Image::get($objImage->path, '300', '300', 'center_center'));
-			}
-
-			if ($this->kitchenware_price) {
-				$price   = number_format($objProjects->price);
-			}
-
-			$arrProjectsList[] = array
-			(
-				'title'       => $objProjects->title,
-				'year'        => $objProjects->year,
-				'duration'    => $objProjects->duration,
-				'status'      => $objProjects->status,
-				'URL'         => $objProjects->URL,
-				'description' => $objProjects->description,
-				'image'       => $strImage,
-			);
+			$objPage->pageTitle = strip_tags(strip_insert_tags($objProject->title));
 		}
-
-		$this->Template->projects = $arrProjectsList;
 
 	}
 }

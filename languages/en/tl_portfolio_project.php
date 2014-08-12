@@ -20,8 +20,8 @@ $GLOBALS['TL_LANG']['tl_portfolio_project']['alias']       = array('Alias', 'Ple
 $GLOBALS['TL_LANG']['tl_portfolio_project']['link']        = array('URL', 'Please enter the website URL.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC']   = array('Add an image', 'Please select an image.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['description'] = array('Description', 'Please enter the description.');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['published']   = array('Publish customer', 'Make the customer item publicly visible on the website.');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['featured']    = array('Feature customer', 'Show the customer item in a featured project list.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['published']   = array('Publish project', 'Make the project item publicly visible on the website.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['featured']    = array('Feature project', 'Show the project item in a featured project list.');
 
 
 /**

@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ctable'                      => 'tl_portfolio_customer',
+		'ctable'                      => array('tl_portfolio_customer','tl_portfolio_project'),
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -64,14 +64,20 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 			'edit' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['edit'],
-				'href'                => 'table=tl_portfolio_customer',
+				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
-			'editheader' => array
+			'customer' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['editheader'],
-				'href'                => 'act=edit',
-				'icon'                => 'header.gif'
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['customer'],
+				'href'                => 'table=tl_portfolio_customer',
+				'icon'                => 'system/modules/portfolio/assets/customers.png'
+			),
+			'projects' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['projects'],
+				'href'                => 'table=tl_portfolio_project',
+				'icon'                => 'system/modules/portfolio/assets/projects.png'
 			),
 			'copy' => array
 			(

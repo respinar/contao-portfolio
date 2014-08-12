@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_portfolio_customer',
+		'ptable'                      => 'tl_portfolio',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -109,7 +109,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias,status,date;{description_legend},description;{image_legend},singleSRC;{meta_legend},link,duration;{publish_legend},published,featured,start,stop'
+		'default'                     => '{title_legend},title,alias,status,date;{customer_legend},customerID;{description_legend},description;{image_legend},singleSRC;{meta_legend},link,duration;{publish_legend},published,featured,start,stop'
 	),
 
 	// Fields
@@ -121,7 +121,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 		),
 		'pid' => array
 		(
-            'foreignKey'              => 'tl_portfolio_customer.title',
+            'foreignKey'              => 'tl_portfolio.title',
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
             'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),
@@ -159,12 +159,22 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'eval'                    => array('rgxp'=>'date', 'doNotCopy'=>true, 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
 			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
+		'customerID' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['customerID'],
+			'exclude'                 => true,
+			'inputType'               => 'select',
+			'foreignKey'              => 'tl_portfolio_customer.title',
+			'eval'                    => array('mandatory'=>true),
+			'sql'                     => "int(10) unsigned NOT NULL default '0'",
+			'relation'                => array('type'=>'hasOne', 'load'=>'eager')
+		),
 		'singleSRC' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
+			'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => "binary(16) NULL"
 		),
 		'link' => array
@@ -264,7 +274,7 @@ class tl_portfolio_project extends Backend
 			$strImage = \Image::getHtml(\Image::get($objImage->path, '60', '60', 'center_center'));
 		}
 
-		return '<div><div style="float:left; margin-right:10px;">'.$strImage.'</div>'. $arrRow['title'] . '</div>';
+		return '<div><div style="float:left; margin-right:10px;">'.$strImage.'</div>'. $arrRow['title'] .'</div>';
 	}
 
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)

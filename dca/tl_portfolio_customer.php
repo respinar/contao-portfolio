@@ -23,7 +23,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 	(
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_portfolio',
-		'ctable'                      => 'tl_portfolio_project',
         'switchToEdit'                => true,
 		'enableVersioning'            => true,
 		'sql' => array
@@ -71,12 +70,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['editheader'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
-			),
-			'projects' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['projects'],
-				'href'                => 'table=tl_portfolio_project',
-				'icon'                => 'system/modules/portfolio/assets/projects.png'
 			),
 			'copy' => array
 			(
@@ -366,7 +359,7 @@ class tl_portfolio_customer extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_portfolio_customer SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
 		$this->createNewVersion('tl_portfolio_customer', $intId);

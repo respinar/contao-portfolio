@@ -16,4 +16,6 @@
  * Miscellaneous
  */
 $GLOBALS['TL_LANG']['MSC']['emptyCustomers'] = 'مشتری‌ای یافت نشد!';
+$GLOBALS['TL_LANG']['MSC']['emptyProject']  = 'پروژه‌ای یافت نشد!';
+$GLOBALS['TL_LANG']['MSC']['moredetail']    = 'اطلاعات بیشتر';
 

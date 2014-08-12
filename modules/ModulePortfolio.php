@@ -179,9 +179,9 @@ abstract class ModulePortfolio extends \Module
 				$arrCustomer = $objCustomer->row();
 
 				// Override the default image size
-				if ($this->imgSize != '')
+				if ($this->customer_imgSize != '')
 				{
-					$size = deserialize($this->imgSize);
+					$size = deserialize($this->customer_imgSize);
 
 					if ($size[0] > 0 || $size[1] > 0)
 					{

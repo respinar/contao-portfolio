@@ -101,7 +101,7 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		}
 
 		$this->Template->projects = array();
-		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyList'];
+		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyCustomerList'];
 
 		// Get the total number of items
 		$intTotal = \PortfolioCustomerModel::countPublishedByPids($this->portfolio_categories, $blnFeatured);
