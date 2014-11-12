@@ -17,8 +17,9 @@
         "issues":"https://github.com/respinar/portfolio/issues"
     },
     "require": {
-        "contao/core": ">=3.2,<4-dev",
-        "contao-community-alliance/composer-installer": "*"
+        "php":">=5.3.2",
+	"contao/core":">=3.2,<=3.4",
+	"contao-community-alliance/composer-plugin":"2.*"
     },
     "autoload": {
         "classmap": [""]
@@ -27,6 +28,12 @@
         "contao": {
             "sources": {
                 "": "system/modules/portfolio"
+            },
+            "transifex": {
+		"project": "portfolio",
+		"prefix": "master-",
+		"languages_cto": "languages",
+		"languages_tx": ".tx"
             }
         }
     }
