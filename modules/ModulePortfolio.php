@@ -146,7 +146,7 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->setData($objCustomer->row());
 
 		$objTemplate->class = (($this->setClass != '') ? ' ' . $this->setClass : '') . $strClass;
-		$objTemplate->class = (($this->customerClass != '') ? ' ' . $this->customerClass : '') . $strClass;
+		$objTemplate->class = (($this->customer_class != '') ? ' ' . $this->customer_class : '') . $strClass;
 
 		$objTemplate->title       = $objCustomer->title;
 		$objTemplate->link        = $objCustomer->link;
@@ -212,8 +212,8 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate = new \FrontendTemplate($this->project_template);
 		$objTemplate->setData($objProject->row());
 
-		$objTemplate->class = (($this->projectClass != '') ? ' ' . $this->projectClass : '') . $strClass;
-		$objTemplate->projectClass = $this->projectClass;
+		$objTemplate->class = (($this->project_class != '') ? ' ' . $this->project_class : '') . $strClass;
+		$objTemplate->project_class = $this->project_class;
 
 		$objTemplate->title       = $objProject->title;
 		$objTemplate->date        = $objProject->date;
