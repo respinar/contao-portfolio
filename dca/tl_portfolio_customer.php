@@ -116,7 +116,16 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,alias;{description_legend},description;{image_legend},singleSRC;{meta_legend},link;{publish_legend},published,featured,start,stop'
+		'__selector__'                => array('addImage','addEnclosure','published'),
+		'default'                     => '{title_legend},title,alias;{meta_legend},link,featured;{description_legend},description;{image_legend},addImage;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+	),
+
+	// Subpalettes
+	'subpalettes' => array
+	(
+		'addImage'                    => 'singleSRC,alt,caption',
+		'addEnclosure'                => 'enclosure',
+		'published'                   => 'start,stop'
 	),
 
 	// Fields
@@ -158,13 +167,39 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
 		),
+		'addImage' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addImage'],
+			'exclude'                 => true,
+			'inputType'               => 'checkbox',
+			'eval'                    => array('submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
 		'singleSRC' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['singleSRC'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
+			'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => "binary(16) NULL"
+		),
+		'alt' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['alt'],
+			'exclude'                 => true,
+			'search'                  => true,
+			'inputType'               => 'text',
+			'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
+		),
+		'caption' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['caption'],
+			'exclude'                 => true,
+			'search'                  => true,
+			'inputType'               => 'text',
+			'eval'                    => array('maxlength'=>255, 'allowHtml'=>true, 'tl_class'=>'w50'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'link' => array
 		(
@@ -184,6 +219,22 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'eval'                    => array('rte'=>'tinyMCE'),
 			'sql'                     => "text NULL"
 		),
+		'addEnclosure' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addEnclosure'],
+			'exclude'                 => true,
+			'inputType'               => 'checkbox',
+			'eval'                    => array('submitOnChange'=>true),
+			'sql'                     => "char(1) NOT NULL default ''"
+		),
+		'enclosure' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['enclosure'],
+			'exclude'                 => true,
+			'inputType'               => 'fileTree',
+			'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'filesOnly'=>true, 'isDownloads'=>true, 'extensions'=>Config::get('allowedDownload'), 'mandatory'=>true),
+			'sql'                     => "blob NULL"
+		),
 		'published' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['published'],
@@ -191,7 +242,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'filter'                  => true,
 			'flag'                    => 1,
 			'inputType'               => 'checkbox',
-			'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50'),
+			'eval'                    => array('doNotCopy'=>true, 'submitOnChange'=>true),
 			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'featured' => array
@@ -201,7 +252,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 			'filter'                  => true,
 			'flag'                    => 1,
 			'inputType'               => 'checkbox',
-			'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50'),
+			'eval'                    => array('doNotCopy'=>true, 'tl_class'=>'w50 m12'),
 			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'start' => array
