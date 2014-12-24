@@ -149,10 +149,10 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->class = (($this->client_class != '') ? ' ' . $this->client_class : '') . $strClass;
 
 		$objTemplate->title       = $objClient->title;
-		$objTemplate->link        = $objClient->link;
+		$objTemplate->url         = $objClient->url;
 		$objTemplate->description = $objClient->description;
 
-		$objTemplate->url         = $this->generateClientUrl($objClient, $blnAddCategory);
+		$objTemplate->link        = $this->generateClientUrl($objClient, $blnAddCategory);
 		$objTemplate->more        = $this->generateClientLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objClient, $blnAddCategory, true);
 
 		$objTemplate->category    = $objClient->getRelated('pid');
@@ -183,14 +183,16 @@ abstract class ModulePortfolio extends \Module
 				{
 					$size = deserialize($this->client_imgSize);
 
-					if ($size[0] > 0 || $size[1] > 0)
+					if ($size[0] > 0 || $size[1] > 0 || is_numeric($size[2]))
 					{
-						$arrClient['size'] = $this->imgSize;
+						$arrClient['size'] = $this->client_imgSize;
 					}
 				}
 
+				$strLightboxId = 'lightbox[lb' . $this->id . ']';
+				$arrProduct['fullsize'] = $this->fullsize;
 				$arrClient['singleSRC'] = $objModel->path;
-				$this->addImageToTemplate($objTemplate, $arrClient);
+				$this->addImageToTemplate($objTemplate, $arrClient,null, $strLightboxId);
 			}
 		}
 
@@ -254,7 +256,7 @@ abstract class ModulePortfolio extends \Module
 				{
 					$size = deserialize($this->project_imgSize);
 
-					if ($size[0] > 0 || $size[1] > 0)
+					if ($size[0] > 0 || $size[1] > 0 || is_numeric($size[2]))
 					{
 						$arrProject['size'] = $this->project_imgSize;
 					}
