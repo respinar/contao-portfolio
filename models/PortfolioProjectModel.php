@@ -215,7 +215,7 @@ class PortfolioProjectModel extends \Model
 	 *
 	 * @return \Model\Collection|null A collection of models or null if there are no news
 	 */
-	public static function findPublishedByCustomerId($intId, $intLimit=0, array $arrOptions=array())
+	public static function findPublishedByClientId($intId, $intLimit=0, array $arrOptions=array())
 	{
 		$time = time();
 		$t = static::$strTable;
