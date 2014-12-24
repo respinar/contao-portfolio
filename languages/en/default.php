@@ -15,7 +15,7 @@
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['MSC']['emptyCustomerList'] = 'No customer found!';
+$GLOBALS['TL_LANG']['MSC']['emptyClientList']   = 'No client found!';
 $GLOBALS['TL_LANG']['MSC']['emptyProjectList']  = 'No project found!';
-$GLOBALS['TL_LANG']['MSC']['moredetail']    = 'More detail';
+$GLOBALS['TL_LANG']['MSC']['moredetail']        = 'More detail';
 

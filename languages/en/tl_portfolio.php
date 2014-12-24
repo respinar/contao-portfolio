@@ -17,7 +17,7 @@
  */
 $GLOBALS['TL_LANG']['tl_portfolio']['title']          = array('Portfolio Title', 'Please enter the Portfolio title.');
 $GLOBALS['TL_LANG']['tl_portfolio']['alias']          = array('Alias', 'Please enter the alias.');
-$GLOBALS['TL_LANG']['tl_portfolio']['jumpToCustomer'] = array('Customer redirect page', 'Please choose the customer detail page to which visitors will be redirected when clicking a cutomer item.');
+$GLOBALS['TL_LANG']['tl_portfolio']['jumpToClient']   = array('Client redirect page', 'Please choose the client detail page to which visitors will be redirected when clicking a cutomer item.');
 $GLOBALS['TL_LANG']['tl_portfolio']['jumpToProject']  = array('Product redirect page', 'Please choose the project detail page to which visitors will be redirected when clicking a project item.');
 $GLOBALS['TL_LANG']['tl_portfolio']['protected']      = array('Protect category', 'Show Portfolio items to certain member groups only.');
 $GLOBALS['TL_LANG']['tl_portfolio']['groups']         = array('Allowed member groups', 'These groups will be able to see the Portfolio items in this category.');

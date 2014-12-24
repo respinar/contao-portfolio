@@ -27,6 +27,8 @@ $GLOBALS['TL_LANG']['tl_portfolio_client']['published']   = array('Publish clien
 $GLOBALS['TL_LANG']['tl_portfolio_client']['featured']    = array('Feature client', 'Show the client item in a featured project list.');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['addEnclosure']= array('Add enclosures', 'Add one or more downloadable files to the client item.');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['enclosure']   = array('Enclosures', 'Please choose the files you want to attach.');
+$GLOBALS['TL_LANG']['tl_portfolio_client']['start']       = array('Show from', 'Do not show the client item on the website before this day.');
+$GLOBALS['TL_LANG']['tl_portfolio_client']['stop']        = array('Show until', 'Do not show the client item on the website on and after this day.');
 
 
 
