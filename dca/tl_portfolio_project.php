@@ -110,7 +110,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('addImage','addEnclosure','published'),
-		'default'                     => '{title_legend},title,alias;{project_legend},date,duration,customerID,status;{meta_legend},link,featured;{description_legend},description;{image_legend},addImage;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+		'default'                     => '{title_legend},title,alias;{project_legend},clientID,status,date,duration;{description_legend},description;{meta_legend},link,featured;{image_legend},addImage;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
 	),
 
 	// Subpalettes
@@ -168,12 +168,12 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'eval'                    => array('rgxp'=>'date', 'doNotCopy'=>true, 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
 			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
-		'customerID' => array
+		'clientID' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['customerID'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['clientID'],
 			'exclude'                 => true,
 			'inputType'               => 'select',
-			'foreignKey'              => 'tl_portfolio_customer.title',
+			'foreignKey'              => 'tl_portfolio_client.title',
 			'eval'                    => array('mandatory'=>true,'tl_class'=>'w50'),
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
 			'relation'                => array('type'=>'hasOne', 'load'=>'eager')

@@ -116,14 +116,13 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'__selector__'                => array('addImage','addEnclosure','published'),
-		'default'                     => '{title_legend},title,alias;{meta_legend},link,featured;{description_legend},description;{image_legend},addImage;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+		'__selector__'                => array('addEnclosure','published'),
+		'default'                     => '{title_legend},title,alias;{image_legend},singleSRC,alt,caption;{description_legend},description;{meta_legend},link,featured;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
 	),
 
 	// Subpalettes
 	'subpalettes' => array
 	(
-		'addImage'                    => 'singleSRC,alt,caption',
 		'addEnclosure'                => 'enclosure',
 		'published'                   => 'start,stop'
 	),
@@ -166,14 +165,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
-		),
-		'addImage' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['addImage'],
-			'exclude'                 => true,
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true),
-			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'singleSRC' => array
 		(
