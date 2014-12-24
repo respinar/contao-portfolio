@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ctable'                      => array('tl_portfolio_customer','tl_portfolio_project'),
+		'ctable'                      => array('tl_portfolio_client','tl_portfolio_project'),
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		(
 			'fields'                  => array('title'),
 			'format'                  => '%s',
-			//'label_callback'          => array('tl_portfolio', 'addCustomersCount')
+			//'label_callback'          => array('tl_portfolio', 'addClientsCount')
 		),
 		'global_operations' => array
 		(
@@ -67,15 +67,15 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
-			'customer' => array
+			'client' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['customer'],
-				'href'                => 'table=tl_portfolio_customer',
-				'icon'                => 'system/modules/portfolio/assets/customers.png'
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['clients'],
+				'href'                => 'table=tl_portfolio_client',
+				'icon'                => 'system/modules/portfolio/assets/clients.png'
 			),
 			'projects' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['projects'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['projects'],
 				'href'                => 'table=tl_portfolio_project',
 				'icon'                => 'system/modules/portfolio/assets/projects.png'
 			),
@@ -105,7 +105,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('protected'),
-		'default'                     => '{title_legend},title;{redirect_legend},jumpToCustomer,jumpToProject;{protected_legend:hide},protected;'
+		'default'                     => '{title_legend},title;{redirect_legend},jumpToClient,jumpToProject;{protected_legend:hide},protected;'
 	),
 
 	// Subpalettes
@@ -134,9 +134,9 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
-		'jumpToCustomer' => array
+		'jumpToClient' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToCustomer'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToClient'],
 			'exclude'                 => true,
 			'inputType'               => 'pageTree',
 			'foreignKey'              => 'tl_page.title',
