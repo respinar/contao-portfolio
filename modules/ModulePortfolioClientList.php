@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -19,20 +19,20 @@ namespace portfolio;
 
 
 /**
- * Class ModulePortfolioCustomerList
+ * Class ModulePortfolioClientList
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioCustomerList extends \ModulePortfolio
+class ModulePortfolioClientList extends \ModulePortfolio
 {
 
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'mod_portfolio_customer_list';
+	protected $strTemplate = 'mod_portfolio_client_list';
 
 	/**
 	 * Display a wildcard in the back end
@@ -44,7 +44,7 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['customers_list'][0]) . ' ###';
+			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['portfolio_client_list'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -61,10 +61,10 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 			return '';
 		}
 
-		// Show the customers detail if an item has been selected
-		if ($this->customer_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
+		// Show the clients detail if an item has been selected
+		if ($this->client_detailModule > 0 && (isset($_GET['items']) || ($GLOBALS['TL_CONFIG']['useAutoItem'] && isset($_GET['auto_item']))))
 		{
-			return $this->getFrontendModule($this->customer_detailModule, $this->strColumn);
+			return $this->getFrontendModule($this->client_detailModule, $this->strColumn);
 		}
 
 		return parent::generate();
@@ -87,11 +87,11 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		}
 
 		// Handle featured news
-		if ($this->customer_featured == 'featured')
+		if ($this->cleint_featured == 'featured')
 		{
 			$blnFeatured = true;
 		}
-		elseif ($this->customer_featured == 'unfeatured')
+		elseif ($this->client_featured == 'unfeatured')
 		{
 			$blnFeatured = false;
 		}
@@ -101,10 +101,10 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		}
 
 		$this->Template->projects = array();
-		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyCustomerList'];
+		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyClientList'];
 
 		// Get the total number of items
-		$intTotal = \PortfolioCustomerModel::countPublishedByPids($this->portfolio_categories, $blnFeatured);
+		$intTotal = \PortfolioClientModel::countPublishedByPids($this->portfolio_categories, $blnFeatured);
 
 		if ($intTotal < 1)
 		{
@@ -158,16 +158,16 @@ class ModulePortfolioCustomerList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objCustomers = \PortfolioCustomerModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
+			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objCustomers = \PortfolioCustomerModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
+			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found
-		if ($objCustomers !== null) {
-			$this->Template->customers = $this->parseCustomers($objCustomers);
+		if ($objClients !== null) {
+			$this->Template->clients = $this->parseClients($objClients);
 		}
 
 		$this->Template->portfolio_categories = $this->portfolio_categories;

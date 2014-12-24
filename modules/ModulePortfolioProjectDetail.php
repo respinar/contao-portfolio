@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -19,7 +19,7 @@ namespace portfolio;
 
 
 /**
- * Class ModulePortfolioCustomerDetail
+ * Class ModulePortfolioProjectDetail
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
@@ -44,7 +44,7 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		{
 			$objTemplate = new \BackendTemplate('be_wildcard');
 
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['customers_detail'][0]) . ' ###';
+			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['portfolio_project_detail'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
 			$objTemplate->id = $this->id;
 			$objTemplate->link = $this->name;
@@ -61,7 +61,7 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 
 		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
 
-		// Do not index or cache the page if no customer item has been specified
+		// Do not index or cache the page if no project item has been specified
 		if (!\Input::get('items'))
 		{
 			global $objPage;
@@ -104,15 +104,15 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		$arrProject = $this->parseProject($objProject);
 		$this->Template->project = $arrProject;
 
-		echo $objProject->customerID;
+		echo $objProject->clientID;
 
-		// Get the Customer items
-		$objCustomer = \PortfolioCustomerModel::findPublishedByParentAndIdOrAlias($objProject->customerID,$this->portfolio_categories);
+		// Get the Client items
+		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_categories);
 
-		$this->Template->customer = '';
+		$this->Template->client = '';
 
-		if ($objCustomer !== null) {
-			$this->Template->customer = $this->parseCustomer($objCustomer);
+		if ($objClient !== null) {
+			$this->Template->client = $this->parseClient($objClient);
 		}
 
 		// Overwrite the page title (see #2853 and #4955)

@@ -2,10 +2,10 @@
 
 <?php $this->block('content'); ?>
 
-  <?php if (empty($this->customers)): ?>
+  <?php if (empty($this->clients)): ?>
     <p class="empty"><?php echo $this->empty; ?></p>
   <?php else: ?>
-    <?php echo implode('', $this->customers); ?>
+    <?php echo implode('', $this->clients); ?>
     <?php echo $this->pagination; ?>
   <?php endif; ?>
 

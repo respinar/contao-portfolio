@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -13,9 +13,9 @@
 
 
 /**
- * Table tl_portfolio_customer
+ * Table tl_portfolio_client
  */
-$GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
+$GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 (
 
 	// Config
@@ -51,7 +51,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		(
 			'fields'                  => array('title'),
 			'format'                  => '%s',
-			'label_callback'          => array('tl_portfolio_customer', 'addCustomersImage')
+			'label_callback'          => array('tl_portfolio_client', 'addClientsImage')
 		),
 		'global_operations' => array
 		(
@@ -67,46 +67,46 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['editheader'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['editheader'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['copy'],
 				'href'                => 'act=paste&amp;mode=copy',
 				'icon'                => 'copy.gif'
 			),
 			'cut' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['cut'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['cut'],
 				'href'                => 'act=paste&amp;mode=cut',
 				'icon'                => 'cut.gif'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'toggle' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['toggle'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['toggle'],
 				'icon'                => 'visible.gif',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('tl_portfolio_customer', 'toggleIcon')
+				'button_callback'     => array('tl_portfolio_client', 'toggleIcon')
 			),
 			'feature' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['feature'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['feature'],
 				'icon'                => 'featured.gif',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleFeature(this,%s)"',
-				'button_callback'     => array('tl_portfolio_customer', 'iconFeature')
+				'button_callback'     => array('tl_portfolio_client', 'iconFeature')
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.gif'
 			)
@@ -151,7 +151,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'title' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['title'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['title'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -160,7 +160,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'alias' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['alias'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['alias'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -169,7 +169,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'addImage' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addImage'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['addImage'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('submitOnChange'=>true),
@@ -177,7 +177,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'singleSRC' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['singleSRC'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['singleSRC'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
 			'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
@@ -185,7 +185,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'alt' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['alt'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['alt'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -194,7 +194,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'caption' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['caption'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['caption'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -203,7 +203,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'link' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['link'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['link'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -212,7 +212,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'description' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['description'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['description'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'textarea',
@@ -221,7 +221,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'addEnclosure' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['addEnclosure'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['addEnclosure'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('submitOnChange'=>true),
@@ -229,7 +229,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'enclosure' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['enclosure'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['enclosure'],
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
 			'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'filesOnly'=>true, 'isDownloads'=>true, 'extensions'=>Config::get('allowedDownload'), 'mandatory'=>true),
@@ -237,7 +237,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'published' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['published'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['published'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'flag'                    => 1,
@@ -247,7 +247,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'featured' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['featured'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['featured'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'flag'                    => 1,
@@ -257,7 +257,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'start' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['start'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['start'],
 			'exclude'                 => true,
 			'inputType'               => 'text',
 			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
@@ -265,7 +265,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 		),
 		'stop' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_customer']['stop'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['stop'],
 			'exclude'                 => true,
 			'inputType'               => 'text',
 			'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
@@ -277,7 +277,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_customer'] = array
 /**
  * Provide miscellaneous methods that are used by the data configuration array
  */
-class tl_portfolio_customer extends Backend
+class tl_portfolio_client extends Backend
 {
 
 	/**
@@ -285,7 +285,7 @@ class tl_portfolio_customer extends Backend
 	 * @param array
 	 * @return string
 	 */
-	public function addCustomersImage($arrRow)
+	public function addClientsImage($arrRow)
 	{
 		$objImage = \FilesModel::findByPk($arrRow['singleSRC']);
 
@@ -337,12 +337,12 @@ class tl_portfolio_customer extends Backend
 		//	$this->redirect('contao/main.php?act=error');
 		//}
 
-		$this->createInitialVersion('tl_portfolio_customer', $intId);
+		$this->createInitialVersion('tl_portfolio_client', $intId);
 
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_customer']['fields']['published']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_client']['fields']['published']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_portfolio_customer']['fields']['published']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_portfolio_client']['fields']['published']['save_callback'] as $callback)
 			{
 				$this->import($callback[0]);
 				$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, $this);
@@ -350,10 +350,10 @@ class tl_portfolio_customer extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_customers SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_portfolio_client SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->createNewVersion('tl_portfolio_customer', $intId);
+		$this->createNewVersion('tl_portfolio_client', $intId);
 
 	}
 
@@ -397,12 +397,12 @@ class tl_portfolio_customer extends Backend
 		//	$this->redirect('contao/main.php?act=error');
 		//}
 
-		$this->createInitialVersion('tl_portfolio_customer', $intId);
+		$this->createInitialVersion('tl_portfolio_client', $intId);
 
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_customer']['fields']['featured']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_portfolio_client']['fields']['featured']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_portfolio_customer']['fields']['featured']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_portfolio_client']['fields']['featured']['save_callback'] as $callback)
 			{
 				$this->import($callback[0]);
 				$blnFeature = $this->$callback[0]->$callback[1]($blnFeature, $this);
@@ -410,10 +410,10 @@ class tl_portfolio_customer extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_portfolio_customer SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_portfolio_client SET tstamp=". time() .", featured='" . ($blnFeature ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->createNewVersion('tl_portfolio_customer', $intId);
+		$this->createNewVersion('tl_portfolio_client', $intId);
 
 	}
 

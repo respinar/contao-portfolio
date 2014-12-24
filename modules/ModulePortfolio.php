@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -83,9 +83,9 @@ abstract class ModulePortfolio extends \Module
 	 * @param boolean
 	 * @return array
 	 */
-	protected function parseCustomers($objCustomers, $blnAddCategory=false)
+	protected function parseClients($objClients, $blnAddCategory=false)
 	{
-		$limit = $objCustomers->count();
+		$limit = $objClients->count();
 
 		if ($limit < 1)
 		{
@@ -93,14 +93,14 @@ abstract class ModulePortfolio extends \Module
 		}
 
 		$count = 0;
-		$arrCustomers = array();
+		$arrClients = array();
 
-		while ($objCustomers->next())
+		while ($objClients->next())
 		{
-			$arrCustomers[] = $this->parseCustomer($objCustomers, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % 2) == 0) ? ' odd' : ' even'), $count);
+			$arrClients[] = $this->parseClient($objClients, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % 2) == 0) ? ' odd' : ' even'), $count);
 		}
 
-		return $arrCustomers;
+		return $arrClients;
 	}
 
 	/**
@@ -138,37 +138,37 @@ abstract class ModulePortfolio extends \Module
 	 * @param integer
 	 * @return string
 	 */
-	protected function parseCustomer($objCustomer, $blnAddCategory=false, $strClass='', $intCount=0)
+	protected function parseClient($objClient, $blnAddCategory=false, $strClass='', $intCount=0)
 	{
 		global $objPage;
 
-		$objTemplate = new \FrontendTemplate($this->customer_template);
-		$objTemplate->setData($objCustomer->row());
+		$objTemplate = new \FrontendTemplate($this->client_template);
+		$objTemplate->setData($objClient->row());
 
 		$objTemplate->class = (($this->setClass != '') ? ' ' . $this->setClass : '') . $strClass;
-		$objTemplate->class = (($this->customer_class != '') ? ' ' . $this->customer_class : '') . $strClass;
+		$objTemplate->class = (($this->client_class != '') ? ' ' . $this->client_class : '') . $strClass;
 
-		$objTemplate->title       = $objCustomer->title;
-		$objTemplate->link        = $objCustomer->link;
-		$objTemplate->description = $objCustomer->description;
+		$objTemplate->title       = $objClient->title;
+		$objTemplate->link        = $objClient->link;
+		$objTemplate->description = $objClient->description;
 
-		$objTemplate->url         = $this->generateCustomerUrl($objCustomer, $blnAddCategory);
-		$objTemplate->more        = $this->generateCustomerLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objCustomer, $blnAddCategory, true);
+		$objTemplate->url         = $this->generateClientUrl($objClient, $blnAddCategory);
+		$objTemplate->more        = $this->generateClientLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objClient, $blnAddCategory, true);
 
-		$objTemplate->category    = $objCustomer->getRelated('pid');
+		$objTemplate->category    = $objClient->getRelated('pid');
 
 		$objTemplate->count = $intCount; // see #5708
 
 		$objTemplate->addImage = false;
 
 		// Add an image
-		if ($objCustomer->singleSRC != '')
+		if ($objClient->singleSRC != '')
 		{
-			$objModel = \FilesModel::findByUuid($objCustomer->singleSRC);
+			$objModel = \FilesModel::findByUuid($objClient->singleSRC);
 
 			if ($objModel === null)
 			{
-				if (!\Validator::isUuid($objCustomer->singleSRC))
+				if (!\Validator::isUuid($objClient->singleSRC))
 				{
 					$objTemplate->text = '<p class="error">'.$GLOBALS['TL_LANG']['ERR']['version2format'].'</p>';
 				}
@@ -176,21 +176,21 @@ abstract class ModulePortfolio extends \Module
 			elseif (is_file(TL_ROOT . '/' . $objModel->path))
 			{
 				// Do not override the field now that we have a model registry (see #6303)
-				$arrCustomer = $objCustomer->row();
+				$arrClient = $objClient->row();
 
 				// Override the default image size
-				if ($this->customer_imgSize != '')
+				if ($this->client_imgSize != '')
 				{
-					$size = deserialize($this->customer_imgSize);
+					$size = deserialize($this->client_imgSize);
 
 					if ($size[0] > 0 || $size[1] > 0)
 					{
-						$arrCustomer['size'] = $this->imgSize;
+						$arrClient['size'] = $this->imgSize;
 					}
 				}
 
-				$arrCustomer['singleSRC'] = $objModel->path;
-				$this->addImageToTemplate($objTemplate, $arrCustomer);
+				$arrClient['singleSRC'] = $objModel->path;
+				$this->addImageToTemplate($objTemplate, $arrClient);
 			}
 		}
 
@@ -275,7 +275,7 @@ abstract class ModulePortfolio extends \Module
 	 * @param boolean
 	 * @return string
 	 */
-	protected function generateCustomerUrl($objItem, $blnAddCategory=false)
+	protected function generateClientUrl($objItem, $blnAddCategory=false)
 	{
 		$strCacheKey = 'id_' . $objItem->id;
 
@@ -291,7 +291,7 @@ abstract class ModulePortfolio extends \Module
 		// Link to the default page
 		if (self::$arrUrlCache[$strCacheKey] === null)
 		{
-			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpToCustomer);
+			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpToClient);
 
 			if ($objPage === null)
 			{
@@ -315,14 +315,14 @@ abstract class ModulePortfolio extends \Module
 	 * @param boolean
 	 * @return string
 	 */
-	protected function generateCustomerLink($strLink, $objCustomer, $blnAddCategory=false, $blnIsReadMore=false)
+	protected function generateClientLink($strLink, $objClient, $blnAddCategory=false, $blnIsReadMore=false)
 	{
 
 		return sprintf('<a href="%s" title="%s">%s%s</a>',
-						$this->generateCustomerUrl($objCustomer, $blnAddCategory),
-						specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], $objCustomer->title), true),
+						$this->generateClientUrl($objClient, $blnAddCategory),
+						specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], $objClient->title), true),
 						$strLink,
-						($blnIsReadMore ? ' <span class="invisible">'.$objCustomer->title.'</span>' : ''));
+						($blnIsReadMore ? ' <span class="invisible">'.$objClient->title.'</span>' : ''));
 
 	}
 

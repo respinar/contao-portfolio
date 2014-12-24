@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -19,7 +19,7 @@ array_insert($GLOBALS['BE_MOD']['content'], 1, array
 (
 	'portfolio' => array
 	(
-		'tables' => array('tl_portfolio','tl_portfolio_customer','tl_portfolio_project'),
+		'tables' => array('tl_portfolio','tl_portfolio_client','tl_portfolio_project'),
 		'icon'   => 'system/modules/portfolio/assets/icon.png'
 	)
 ));
@@ -33,9 +33,9 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 (
 	'portfolio' => array
 	(
-        'portfolio_customer_list'   => 'ModulePortfolioCustomerList',
-		'portfolio_customer_detail' => 'ModulePortfolioCustomerDetail',
-		'portfolio_project_list'    => 'ModulePortfolioProjectList',
-		'portfolio_project_detail'  => 'ModulePortfolioProjectDetail'
+        'portfolio_client_list'    => 'ModulePortfolioClientList',
+		'portfolio_client_detail'  => 'ModulePortfolioClientDetail',
+		'portfolio_project_list'   => 'ModulePortfolioProjectList',
+		'portfolio_project_detail' => 'ModulePortfolioProjectDetail'
 	)
 ));

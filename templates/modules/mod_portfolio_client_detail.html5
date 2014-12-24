@@ -2,7 +2,7 @@
 
 <?php $this->block('content'); ?>
 
-  <?php echo $this->customers; ?>
+  <?php echo $this->clients; ?>
 
   <?php if($this->projects) { ?>
   <?php echo implode('', $this->projects); ?>

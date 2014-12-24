@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -18,20 +18,20 @@
 namespace portfolio;
 
 /**
- * Class PortfolioCustomersModel
+ * Class PortfolioClientModel
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class PortfolioCustomerModel extends \Model
+class PortfolioClientModel extends \Model
 {
 
 	/**
 	 * Name of the table
 	 * @var string
 	 */
-	protected static $strTable = 'tl_portfolio_customer';
+	protected static $strTable = 'tl_portfolio_client';
 
 	/**
 	 * Find published news items by their parent ID and ID or alias
