@@ -220,7 +220,7 @@ class PortfolioProjectModel extends \Model
 		$time = time();
 		$t = static::$strTable;
 
-		$arrColumns = array("$t.customerID=? AND ($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1");
+		$arrColumns = array("$t.clientID=? AND ($t.start='' OR $t.start<$time) AND ($t.stop='' OR $t.stop>$time) AND $t.published=1");
 
 		if (!isset($arrOptions['order']))
 		{
