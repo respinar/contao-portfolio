@@ -116,7 +116,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	// Subpalettes
 	'subpalettes' => array
 	(
-		'addImage'                    => 'singleSRC,alt,caption',
+		'addImage'                    => 'singleSRC',
 		'addEnclosure'                => 'enclosure',
 		'published'                   => 'start,stop'
 	),
@@ -193,24 +193,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'inputType'               => 'fileTree',
 			'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => "binary(16) NULL"
-		),
-		'alt' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['alt'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(255) NOT NULL default ''"
-		),
-		'caption' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['caption'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'allowHtml'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'link' => array
 		(

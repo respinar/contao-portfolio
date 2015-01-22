@@ -117,7 +117,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('addEnclosure','published'),
-		'default'                     => '{title_legend},title,alias;{image_legend},singleSRC,alt,caption;{description_legend},description;{meta_legend},link,featured;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+		'default'                     => '{title_legend},title,alias;{image_legend},singleSRC;{description_legend},description;{meta_legend},link,featured;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
 	),
 
 	// Subpalettes
@@ -173,24 +173,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 			'inputType'               => 'fileTree',
 			'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => "binary(16) NULL"
-		),
-		'alt' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['alt'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(255) NOT NULL default ''"
-		),
-		'caption' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client']['caption'],
-			'exclude'                 => true,
-			'search'                  => true,
-			'inputType'               => 'text',
-			'eval'                    => array('maxlength'=>255, 'allowHtml'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'link' => array
 		(

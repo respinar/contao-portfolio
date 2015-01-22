@@ -97,7 +97,7 @@ abstract class ModulePortfolio extends \Module
 
 		while ($objClients->next())
 		{
-			$arrClients[] = $this->parseClient($objClients, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % 2) == 0) ? ' odd' : ' even'), $count);
+			$arrClients[] = $this->parseClient($objClients, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % $this->client_perRow) == 0) ? ' last_col' : '') . ((($count % $this->client_perRow) == 1) ? ' first_col' : ''), $count);
 		}
 
 		return $arrClients;
@@ -123,7 +123,7 @@ abstract class ModulePortfolio extends \Module
 
 		while ($objProjects->next())
 		{
-			$arrProjects[] = $this->parseProject($objProjects, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % 2) == 0) ? ' odd' : ' even'), $count);
+			$arrProjects[] = $this->parseProject($objProjects, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % $this->project_perRow) == 0) ? ' last_col' : '') . ((($count % $this->project_perRow) == 1) ? ' first_col' : ''), $count);
 		}
 
 		return $arrProjects;
@@ -148,9 +148,6 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->class = (($this->setClass != '') ? ' ' . $this->setClass : '') . $strClass;
 		$objTemplate->class = (($this->client_class != '') ? ' ' . $this->client_class : '') . $strClass;
 
-		$objTemplate->title       = $objClient->title;
-		$objTemplate->url         = $objClient->url;
-		$objTemplate->description = $objClient->description;
 
 		$objTemplate->link        = $this->generateClientUrl($objClient, $blnAddCategory);
 		$objTemplate->more        = $this->generateClientLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objClient, $blnAddCategory, true);
@@ -217,20 +214,11 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->class = (($this->project_class != '') ? ' ' . $this->project_class : '') . $strClass;
 		$objTemplate->project_class = $this->project_class;
 
-		$objTemplate->title       = $objProject->title;
-		$objTemplate->date        = $objProject->date;
-		$objTemplate->link        = $objProject->link;
-		$objTemplate->duration    = $objProject->duration;
-		$objTemplate->status      = $objProject->status;
-		$objTemplate->description = $objProject->description;
-
-		$objTemplate->url         = $this->generateProjectUrl($objProject, $blnAddCategory);
-		$objTemplate->more        = $this->generateProjectLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objProject, $blnAddCategory, true);
+		$objTemplate->link         = $this->generateProjectUrl($objProject, $blnAddCategory);
 
 		$objTemplate->category    = $objProject->getRelated('pid');
 
 		$objTemplate->count = $intCount; // see #5708
-		$objTemplate->text = '';
 
 		$objTemplate->addImage = false;
 
