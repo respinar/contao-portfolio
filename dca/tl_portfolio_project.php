@@ -156,7 +156,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'eval'                    => array('mandatory'=>true, 'rgxp'=>'alias','unique'=>true,'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(128) NOT NULL default ''"
 		),
-        'date' => array
+		'date' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['date'],
 			'default'                 => time(),
@@ -174,7 +174,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			'exclude'                 => true,
 			'inputType'               => 'select',
 			'foreignKey'              => 'tl_portfolio_client.title',
-			'eval'                    => array('mandatory'=>true,'tl_class'=>'w50'),
+			'eval'                    => array('includeBlankOption'=>true,'tl_class'=>'w50'),
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
 			'relation'                => array('type'=>'hasOne', 'load'=>'eager')
 		),

@@ -39,9 +39,4 @@
     <p class="status"><?php echo $this->status; ?></p>
   <?php endif; ?>
 
-  <?php if ($this->link): ?>
-    <a href="<?php echo $this->link; ?>"><?php echo $this->link; ?></a>
-  <?php endif; ?>
-
-
 </div>

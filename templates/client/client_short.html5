@@ -18,5 +18,6 @@
       <?php endif; ?>
 
   </figure>
+  <p class="name"><?php echo $this->title; ?></p>
 
 </div>
