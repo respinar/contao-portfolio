@@ -13,16 +13,16 @@
 
 
 /**
- * Table tl_portfolio
+ * Table tl_portfolio_client_category
  */
-$GLOBALS['TL_DCA']['tl_portfolio'] = array
+$GLOBALS['TL_DCA']['tl_portfolio_client_category'] = array
 (
 
 	// Config
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ctable'                      => array('tl_portfolio_client','tl_portfolio_project'),
+		'ctable'                      => array('tl_portfolio_client'),
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		(
 			'fields'                  => array('title'),
 			'format'                  => '%s',
-			//'label_callback'          => array('tl_portfolio', 'addClientsCount')
+			//'label_callback'          => array('tl_portfolio_client_category', 'addClientsCount')
 		),
 		'global_operations' => array
 		(
@@ -63,38 +63,32 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['edit'],
-				'href'                => 'act=edit',
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['edit'],
+				'href'                => 'table=tl_portfolio_client',
 				'icon'                => 'edit.gif'
 			),
-			'client' => array
+			'editheader' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['clients'],
-				'href'                => 'table=tl_portfolio_client',
-				'icon'                => 'system/modules/portfolio/assets/clients.png'
-			),
-			'projects' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['projects'],
-				'href'                => 'table=tl_portfolio_project',
-				'icon'                => 'system/modules/portfolio/assets/projects.png'
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['editheader'],
+				'href'                => 'act=edit',
+				'icon'                => 'header.gif'
 			),
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['copy'],
 				'href'                => 'act=copy',
 				'icon'                => 'copy.gif'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.gif'
 			)
@@ -105,7 +99,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('protected'),
-		'default'                     => '{title_legend},title;{redirect_legend},jumpToClient,jumpToProject;{protected_legend:hide},protected;'
+		'default'                     => '{title_legend},title;{redirect_legend},jumpToClient;{protected_legend:hide},protected;'
 	),
 
 	// Subpalettes
@@ -127,7 +121,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		),
 		'title' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['title'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['title'],
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
@@ -136,17 +130,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		),
 		'jumpToClient' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToClient'],
-			'exclude'                 => true,
-			'inputType'               => 'pageTree',
-			'foreignKey'              => 'tl_page.title',
-			'eval'                    => array('mandatory'=>true, 'fieldType'=>'radio'),
-			'sql'                     => "int(10) unsigned NOT NULL default '0'",
-			'relation'                => array('type'=>'hasOne', 'load'=>'eager')
-		),
-		'jumpToProject' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['jumpToProject'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['jumpToClient'],
 			'exclude'                 => true,
 			'inputType'               => 'pageTree',
 			'foreignKey'              => 'tl_page.title',
@@ -156,7 +140,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		),
 		'protected' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['protected'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['protected'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('submitOnChange'=>true),
@@ -164,7 +148,7 @@ $GLOBALS['TL_DCA']['tl_portfolio'] = array
 		),
 		'groups' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio']['groups'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_client_category']['groups'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'foreignKey'              => 'tl_member_group.name',

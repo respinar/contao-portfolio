@@ -59,7 +59,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 			\Input::setGet('items', \Input::get('auto_item'));
 		}
 
-		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+		$this->portfolio_client_categories = $this->sortOutProtectedClient(deserialize($this->portfolio_client_categories));
 
 		// Do not index or cache the page if no client item has been specified
 		if (!\Input::get('items'))
@@ -88,7 +88,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 
 
 		// Get the clients item
-		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_categories);
+		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_client_categories);
 
 		if ($objClient === null)
 		{

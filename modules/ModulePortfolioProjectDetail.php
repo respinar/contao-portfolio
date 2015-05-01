@@ -59,7 +59,7 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 			\Input::setGet('items', \Input::get('auto_item'));
 		}
 
-		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+		$this->portfolio_project_categories = $this->sortOutProtectedProject(deserialize($this->portfolio_project_categories));
 
 		// Do not index or cache the page if no project item has been specified
 		if (!\Input::get('items'))
@@ -87,7 +87,7 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		$this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
 
 		// Get the Project item
-		$objProject = \PortfolioProjectModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_categories);
+		$objProject = \PortfolioProjectModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_project_categories);
 
 		if ($objProject === null)
 		{
@@ -107,7 +107,7 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		echo $objProject->clientID;
 
 		// Get the Client items
-		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_categories);
+		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_project_categories);
 
 		$this->Template->client = '';
 

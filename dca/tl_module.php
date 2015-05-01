@@ -17,20 +17,20 @@
  */
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_list']   = '{title_legend},name,headline,type;
-                                                                          {portfolio_legend},portfolio_categories;
+                                                                          {portfolio_legend},portfolio_client_categories;
                                                                           {config_legend},client_detailModule;
                                                                           {template_legend},client_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
                                                                           {client_legend},client_template,client_perRow,client_class,client_imgSize;
                                                                           {protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_detail'] = '{title_legend},name,headline,type;
-                                                                          {portfolio_legend},portfolio_categories;
+                                                                          {portfolio_legend},portfolio_client_categories;
                                                                           {client_legend},client_template,client_imgSize;
                                                                           {projects_legend},project_show,project_template,project_perRow,project_class,project_imgSize;
                                                                           {protected_legend:hide},protected;
                                                                           {expert_legend:hide},guests,cssID,space';
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{title_legend},name,headline,type;
-                                                                            {portfolio_legend},portfolio_categories;
+                                                                            {portfolio_legend},portfolio_project_categories;
                                                                             {projects_legend},project_detailModule;
                                                                             {config_legend},projects_detailModule;
                                                                             {template_legend:hide},project_status,project_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']    = '{tit
                                                                             {protected_legend:hide},protected;
                                                                             {expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail']  = '{title_legend},name,headline,type;
-                                                                            {portfolio_legend},portfolio_categories;
+                                                                            {portfolio_legend},portfolio_project_categories;
                                                                             {template_legend:hide},project_template,project_imgSize;
                                                                             {clients_legend},client_show,client_template,client_imgSize;
                                                                             {protected_legend:hide},protected;
@@ -49,12 +49,21 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail']  = '{tit
 /**
  * Add fields to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_categories'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_client_categories'] = array
 (
-	'label'                => &$GLOBALS['TL_LANG']['tl_module']['portfolio_categories'],
+	'label'                => &$GLOBALS['TL_LANG']['tl_module']['portfolio_client_categories'],
 	'exclude'              => true,
 	'inputType'            => 'checkbox',
-	'foreignKey'           => 'tl_portfolio.title',
+	'foreignKey'           => 'tl_portfolio_client_category.title',
+	'eval'                 => array('multiple'=>true, 'mandatory'=>true),
+    'sql'                  => "blob NULL"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_project_categories'] = array
+(
+	'label'                => &$GLOBALS['TL_LANG']['tl_module']['portfolio_project_categories'],
+	'exclude'              => true,
+	'inputType'            => 'checkbox',
+	'foreignKey'           => 'tl_portfolio_project_category.title',
 	'eval'                 => array('multiple'=>true, 'mandatory'=>true),
     'sql'                  => "blob NULL"
 );

@@ -3,11 +3,9 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2014 Leo Feyer
+ * Copyright (c) 2005-2015 Leo Feyer
  *
- * @package Portfolio
- * @link    https://contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @license LGPL-3.0+
  */
 
 
@@ -26,19 +24,20 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Models
-	'portfolio\PortfolioProjectModel'        => 'system/modules/portfolio/models/PortfolioProjectModel.php',
-	'portfolio\PortfolioModel'               => 'system/modules/portfolio/models/PortfolioModel.php',
-	'portfolio\PortfolioClientModel'         => 'system/modules/portfolio/models/PortfolioClientModel.php',
+	'portfolio\PortfolioProjectModel'         => 'system/modules/portfolio/models/PortfolioProjectModel.php',
+	'portfolio\PortfolioClientModel'          => 'system/modules/portfolio/models/PortfolioClientModel.php',
+	'portfolio\PortfolioClientCategoryModel'  => 'system/modules/portfolio/models/PortfolioClientCategoryModel.php',
+	'portfolio\PortfolioProjectCategoryModel' => 'system/modules/portfolio/models/PortfolioProjectCategoryModel.php',
 
 	// Modules
-	'portfolio\ModulePortfolioProjectList'   => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',
-	'portfolio\ModulePortfolio'              => 'system/modules/portfolio/modules/ModulePortfolio.php',
-	'portfolio\ModulePortfolioProjectDetail' => 'system/modules/portfolio/modules/ModulePortfolioProjectDetail.php',
-	'portfolio\ModulePortfolioClientDetail'  => 'system/modules/portfolio/modules/ModulePortfolioClientDetail.php',
-	'portfolio\ModulePortfolioClientList'    => 'system/modules/portfolio/modules/ModulePortfolioClientList.php',
+	'portfolio\ModulePortfolioProjectList'    => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',
+	'portfolio\ModulePortfolio'               => 'system/modules/portfolio/modules/ModulePortfolio.php',
+	'portfolio\ModulePortfolioProjectDetail'  => 'system/modules/portfolio/modules/ModulePortfolioProjectDetail.php',
+	'portfolio\ModulePortfolioClientDetail'   => 'system/modules/portfolio/modules/ModulePortfolioClientDetail.php',
+	'portfolio\ModulePortfolioClientList'     => 'system/modules/portfolio/modules/ModulePortfolioClientList.php',
 
 	// Classes
-	'Contao\Portfolio'                       => 'system/modules/portfolio/classes/Portfolio.php',
+	'Contao\Portfolio'                        => 'system/modules/portfolio/classes/Portfolio.php',
 ));
 
 

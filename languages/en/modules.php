@@ -16,6 +16,8 @@
  * Back end modules
  */
 $GLOBALS['TL_LANG']['MOD']['portfolio']        = array('Portfolio', 'Manage clients and projects');
+$GLOBALS['TL_LANG']['MOD']['client']           = array('Clients', 'Manage clients');
+$GLOBALS['TL_LANG']['MOD']['project']          = array('Projects', 'Manage projects');
 
 /**
  * Front end modules

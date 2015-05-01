@@ -53,10 +53,10 @@ class ModulePortfolioClientList extends \ModulePortfolio
 			return $objTemplate->parse();
 		}
 
-		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+		$this->portfolio_client_categories = $this->sortOutProtectedClient(deserialize($this->portfolio_client_categories));
 
 		// No portfolio categories available
-		if (!is_array($this->portfolio_categories) || empty($this->portfolio_categories))
+		if (!is_array($this->portfolio_client_categories) || empty($this->portfolio_client_categories))
 		{
 			return '';
 		}
@@ -104,7 +104,7 @@ class ModulePortfolioClientList extends \ModulePortfolio
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyClientList'];
 
 		// Get the total number of items
-		$intTotal = \PortfolioClientModel::countPublishedByPids($this->portfolio_categories, $blnFeatured);
+		$intTotal = \PortfolioClientModel::countPublishedByPids($this->portfolio_client_categories, $blnFeatured);
 
 		if ($intTotal < 1)
 		{
@@ -158,11 +158,11 @@ class ModulePortfolioClientList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
+			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
+			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found
@@ -170,7 +170,7 @@ class ModulePortfolioClientList extends \ModulePortfolio
 			$this->Template->clients = $this->parseClients($objClients);
 		}
 
-		$this->Template->portfolio_categories = $this->portfolio_categories;
+		$this->Template->portfolio_client_categories = $this->portfolio_client_categories;
 
 	}
 }

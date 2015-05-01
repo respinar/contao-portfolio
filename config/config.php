@@ -15,12 +15,20 @@
 /**
  * Back end modules
  */
-array_insert($GLOBALS['BE_MOD']['content'], 1, array
+array_insert($GLOBALS['BE_MOD'], 1, array
 (
 	'portfolio' => array
 	(
-		'tables' => array('tl_portfolio','tl_portfolio_client','tl_portfolio_project'),
-		'icon'   => 'system/modules/portfolio/assets/icon.png'
+		'client' => array
+		(
+			'tables' => array('tl_portfolio_client_category','tl_portfolio_client'),
+			'icon'   => 'system/modules/portfolio/assets/clients.png'
+		),
+		'project' => array
+		(
+			'tables' => array('tl_portfolio_project_category','tl_portfolio_project'),
+			'icon'   => 'system/modules/portfolio/assets/projects.png'
+		)
 	)
 ));
 

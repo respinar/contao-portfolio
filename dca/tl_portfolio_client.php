@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_portfolio',
+		'ptable'                      => 'tl_portfolio_client_category',
         'switchToEdit'                => true,
 		'enableVersioning'            => true,
 		'sql' => array
@@ -136,7 +136,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 		),
 		'pid' => array
 		(
-            'foreignKey'              => 'tl_portfolio.title',
+            'foreignKey'              => 'tl_portfolio_client_category.title',
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
             'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),

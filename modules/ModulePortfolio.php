@@ -39,7 +39,7 @@ abstract class ModulePortfolio extends \Module
 	 * @param array
 	 * @return array
 	 */
-	protected function sortOutProtected($arrCategories)
+	protected function sortOutProtectedClient($arrCategories)
 	{
 		if (BE_USER_LOGGED_IN || !is_array($arrCategories) || empty($arrCategories))
 		{
@@ -47,7 +47,7 @@ abstract class ModulePortfolio extends \Module
 		}
 
 		$this->import('FrontendUser', 'User');
-		$objCategory = \PortfolioModel::findMultipleByIds($arrCategories);
+		$objCategory = \PortfolioClientCategoryModel::findMultipleByIds($arrCategories);
 		$arrCategories = array();
 
 		if ($objCategory !== null)
@@ -75,6 +75,49 @@ abstract class ModulePortfolio extends \Module
 
 		return $arrCategories;
 	}
+
+	/**
+	 * Sort out protected archives
+	 * @param array
+	 * @return array
+	 */
+	protected function sortOutProtectedProject($arrCategories)
+	{
+		if (BE_USER_LOGGED_IN || !is_array($arrCategories) || empty($arrCategories))
+		{
+			return $arrCategories;
+		}
+
+		$this->import('FrontendUser', 'User');
+		$objCategory = \PortfolioProjectCategoryModel::findMultipleByIds($arrCategories);
+		$arrCategories = array();
+
+		if ($objCategory !== null)
+		{
+			while ($objCategory->next())
+			{
+				if ($objCategory->protected)
+				{
+					if (!FE_USER_LOGGED_IN)
+					{
+						continue;
+					}
+
+					$groups = deserialize($objCategory->groups);
+
+					if (!is_array($groups) || empty($groups) || !count(array_intersect($groups, $this->User->groups)))
+					{
+						continue;
+					}
+				}
+
+				$arrCategories[] = $objCategory->id;
+			}
+		}
+
+		return $arrCategories;
+	}
+
 
 
 	/**

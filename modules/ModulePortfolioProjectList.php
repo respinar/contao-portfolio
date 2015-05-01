@@ -53,10 +53,10 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 			return $objTemplate->parse();
 		}
 
-		$this->portfolio_categories = $this->sortOutProtected(deserialize($this->portfolio_categories));
+		$this->portfolio_project_categories = $this->sortOutProtectedProject(deserialize($this->portfolio_project_categories));
 
 		// No portfolio categories available
-		if (!is_array($this->portfolio_categories) || empty($this->portfolio_categories))
+		if (!is_array($this->portfolio_project_categories) || empty($this->portfolio_project_categories))
 		{
 			return '';
 		}
@@ -103,7 +103,7 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		$this->Template->projects = array();
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyProjectList'];
 
-		$intTotal = \PortfolioProjectModel::countPublishedByPids($this->portfolio_categories,$blnFeatured);
+		$intTotal = \PortfolioProjectModel::countPublishedByPids($this->portfolio_project_categories,$blnFeatured);
 
 		// Return if no Projects were found
 		if ($intTotal < 1)
@@ -157,11 +157,11 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, $limit, $offset);
+			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_categories, $blnFeatured, 0, $offset);
+			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found
@@ -169,7 +169,7 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 			$this->Template->projects = $this->parseProjects($objProjects);
 		}
 
-		$this->Template->portfolio_categories = $this->portfolio_categories;
+		$this->Template->portfolio_project_categories = $this->portfolio_project_categories;
 
 	}
 }

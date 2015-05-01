@@ -18,20 +18,20 @@
 namespace portfolio;
 
 /**
- * Class PortfolioModel
+ * Class PortfolioProjectCategoryModel
  *
  * @copyright  2014
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class PortfolioModel extends \Model
+class PortfolioProjectCategoryModel extends \Model
 {
 
 	/**
 	 * Name of the table
 	 * @var string
 	 */
-	protected static $strTable = 'tl_portfolio';
+	protected static $strTable = 'tl_portfolio_project_category';
 
 	public static function findPublishedById($intId)
 	{
