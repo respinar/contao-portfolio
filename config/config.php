@@ -41,7 +41,7 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 (
 	'portfolio' => array
 	(
-        'portfolio_client_list'    => 'ModulePortfolioClientList',
+		'portfolio_client_list'    => 'ModulePortfolioClientList',
 		'portfolio_client_detail'  => 'ModulePortfolioClientDetail',
 		'portfolio_project_list'   => 'ModulePortfolioProjectList',
 		'portfolio_project_detail' => 'ModulePortfolioProjectDetail'

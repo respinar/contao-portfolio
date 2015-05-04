@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	(
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_portfolio_client_category',
-        'switchToEdit'                => true,
+		'switchToEdit'                => true,
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -31,7 +31,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 			(
 				'id'    => 'primary',
 				'pid'   => 'index',
-                'alias' => 'index'
+				'alias' => 'index'
 			)
 		)
 	),
@@ -41,11 +41,12 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	(
 		'sorting' => array
 		(
-			'mode'                    => 1,
+			'mode'                    => 4,
 			'flag'                    => 1,
-			'headerFields'            => array('title'),
 			'fields'                  => array('title'),
-            'panelLayout'             => 'filter;sort,search,limit',
+			'headerFields'            => array('title'),
+			'panelLayout'             => 'search,limit',
+			'child_record_callback'   => array('tl_portfolio_client', 'generateItemRow')
 		),
 		'label' => array
 		(
@@ -136,9 +137,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 		),
 		'pid' => array
 		(
-            'foreignKey'              => 'tl_portfolio_client_category.title',
+			'foreignKey'              => 'tl_portfolio_client_category.title',
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
-            'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
+			'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),
 		'sorting' => array
 		(
@@ -258,7 +259,7 @@ class tl_portfolio_client extends Backend
 	 * @param array
 	 * @return string
 	 */
-	public function addClientsImage($arrRow)
+	public function generateItemRow($arrRow)
 	{
 		$objImage = \FilesModel::findByPk($arrRow['singleSRC']);
 
@@ -267,7 +268,7 @@ class tl_portfolio_client extends Backend
 			$strImage = \Image::getHtml(\Image::get($objImage->path, '30', '30', 'center_center'));
 		}
 
-		return '<div><div style="float:left; margin-right:10px;">'.$strImage.'</div>'. $arrRow['title'] . '</div>';
+		return '<div><div style="float:left; margin-right:10px;">'.$strImage.'</div>'. $arrRow['title'] .'</div>';
 	}
 
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)

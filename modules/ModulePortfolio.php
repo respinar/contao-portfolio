@@ -191,6 +191,8 @@ abstract class ModulePortfolio extends \Module
 		$objTemplate->class = (($this->setClass != '') ? ' ' . $this->setClass : '') . $strClass;
 		$objTemplate->class = (($this->client_class != '') ? ' ' . $this->client_class : '') . $strClass;
 
+		$objTemplate->show_title = $this->show_title;
+
 
 		$objTemplate->link        = $this->generateClientUrl($objClient, $blnAddCategory);
 		$objTemplate->more        = $this->generateClientLink($GLOBALS['TL_LANG']['MSC']['moredetail'], $objClient, $blnAddCategory, true);

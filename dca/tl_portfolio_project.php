@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2005-2013 Leo Feyer
  *
- * @package   customers
+ * @package   portfolio
  * @author    Hamid Abbaszadeh
  * @license   GNU/LGPL
  * @copyright 2014
@@ -13,7 +13,7 @@
 
 
 /**
- * Table tl_customers_project
+ * Table tl_portfolio_project
  */
 $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 (
@@ -23,6 +23,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 	(
 		'dataContainer'               => 'Table',
 		'ptable'                      => 'tl_portfolio_project_category',
+		'switchToEdit'                => true,
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -30,7 +31,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 			(
 				'id'    => 'primary',
 				'pid'   => 'index',
-                'alias' => 'index'
+				'alias' => 'index'
 			)
 		)
 	),
@@ -130,9 +131,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
 		),
 		'pid' => array
 		(
-            'foreignKey'              => 'tl_portfolio_project_category.title',
+			'foreignKey'              => 'tl_portfolio_project_category.title',
 			'sql'                     => "int(10) unsigned NOT NULL default '0'",
-            'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
+			'relation'                => array('type'=>'belongsTo', 'load'=>'eager')
 		),
 		'tstamp' => array
 		(

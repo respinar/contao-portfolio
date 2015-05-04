@@ -47,7 +47,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_client_category'] = array
 		(
 			'fields'                  => array('title'),
 			'format'                  => '%s',
-			//'label_callback'          => array('tl_portfolio_client_category', 'addClientsCount')
 		),
 		'global_operations' => array
 		(

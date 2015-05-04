@@ -18,6 +18,8 @@
       <?php endif; ?>
 
   </figure>
+  <?php if($this->show_title): ?>
   <p class="name"><?php echo $this->title; ?></p>
+  <?php endif; ?>
 
 </div>

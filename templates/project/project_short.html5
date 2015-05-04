@@ -1,8 +1,6 @@
 
 <div class="project_short arc_<?php echo $this->category->id; ?> block<?php echo $this->class; ?>">
 
-  <p class="title"><?php echo $this->title; ?></p>
-
   <?php if ($this->hasMetaFields): ?>
     <p class="info"><time datetime="<?php echo $this->datetime; ?>"><?php echo $this->date; ?></time></p>
   <?php endif; ?>
@@ -26,5 +24,6 @@
 
     </figure>
   <?php endif; ?>
+  <p class="title"><?php echo $this->title; ?></p>
 
 </div>
