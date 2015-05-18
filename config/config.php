@@ -47,3 +47,8 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 		'portfolio_project_detail' => 'ModulePortfolioProjectDetail'
 	)
 ));
+
+/**
+ * Register hook to add carpets items to the indexer
+ */
+$GLOBALS['TL_HOOKS']['getSearchablePages'][]     = array('Portfolio', 'getSearchablePages');

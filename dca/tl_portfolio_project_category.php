@@ -98,7 +98,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project_category'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('protected'),
-		'default'                     => '{title_legend},title;{redirect_legend},jumpToProject;{protected_legend:hide},protected;'
+		'default'                     => '{title_legend},title;{redirect_legend},jumpTo;{protected_legend:hide},protected;'
 	),
 
 	// Subpalettes
@@ -127,9 +127,9 @@ $GLOBALS['TL_DCA']['tl_portfolio_project_category'] = array
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
-		'jumpToProject' => array
+		'jumpTo' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project_category']['jumpToProject'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project_category']['jumpTo'],
 			'exclude'                 => true,
 			'inputType'               => 'pageTree',
 			'foreignKey'              => 'tl_page.title',

@@ -47,30 +47,30 @@ class Portfolio extends \Frontend
 		$time = time();
 		$arrProcessed = array();
 
-		// Get all portfolio archives
-		$objArchive = \NewsArchiveModel::findByProtected('');
+		// Get all client categories
+		$objClientCategory = \PortfolioClientCategoryModel::findAll();
 
-		// Walk through each archive
-		if ($objArchive !== null)
+		// Walk through each category
+		if ($objClientCategory !== null)
 		{
-			while ($objArchive->next())
+			while ($objClientCategory->next())
 			{
-				// Skip portfolio archives without target page
-				if (!$objArchive->jumpTo)
+				// Skip FAQs without target page
+				if (!$objClientCategory->jumpTo)
 				{
 					continue;
 				}
 
-				// Skip portfolio archives outside the root nodes
-				if (!empty($arrRoot) && !in_array($objArchive->jumpTo, $arrRoot))
+				// Skip FAQs outside the root nodes
+				if (!empty($arrRoot) && !in_array($objClientCategory->jumpTo, $arrRoot))
 				{
 					continue;
 				}
 
 				// Get the URL of the jumpTo page
-				if (!isset($arrProcessed[$objArchive->jumpTo]))
+				if (!isset($arrProcessed[$objClientCategory->jumpTo]))
 				{
-					$objParent = \PageModel::findWithDetails($objArchive->jumpTo);
+					$objParent = \PageModel::findWithDetails($objClientCategory->jumpTo);
 
 					// The target page does not exist
 					if ($objParent === null)
@@ -94,63 +94,91 @@ class Portfolio extends \Frontend
 					$domain = ($objParent->rootUseSSL ? 'https://' : 'http://') . ($objParent->domain ?: \Environment::get('host')) . TL_PATH . '/';
 
 					// Generate the URL
-					$arrProcessed[$objArchive->jumpTo] = $domain . $this->generateFrontendUrl($objParent->row(), (($GLOBALS['TL_CONFIG']['useAutoItem'] && !$GLOBALS['TL_CONFIG']['disableAlias']) ?  '/%s' : '/items/%s'), $objParent->language);
+					$arrProcessed[$objClientCategory->jumpTo] = $domain . $this->generateFrontendUrl($objParent->row(), ((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
 				}
 
-				$strUrl = $arrProcessed[$objArchive->jumpTo];
+				$strUrl = $arrProcessed[$objClientCategory->jumpTo];
 
 				// Get the items
-				$objArticle = \NewsModel::findPublishedDefaultByPid($objArchive->id);
+				$objClient = \PortfolioClientModel::findPublishedByPid($objClientCategory->id);
 
-				if ($objArticle !== null)
+				if ($objClient !== null)
 				{
-					while ($objArticle->next())
+					while ($objClient->next())
 					{
-						$arrPages[] = $this->getLink($objArticle, $strUrl);
+						$arrPages[] = sprintf($strUrl, (($objClient->alias != '' && !\Config::get('disableAlias')) ? $objClient->alias : $objClient->id));
+					}
+				}
+			}
+		}
+
+
+		// Get all project categories
+		$objProjectCategory = \PortfolioProjectCategoryModel::findAll();
+
+		// Walk through each category
+		if ($objProjectCategory !== null)
+		{
+			while ($objProjectCategory->next())
+			{
+				// Skip FAQs without target page
+				if (!$objProjectCategory->jumpTo)
+				{
+					continue;
+				}
+
+				// Skip FAQs outside the root nodes
+				if (!empty($arrRoot) && !in_array($objProjectCategory->jumpTo, $arrRoot))
+				{
+					continue;
+				}
+
+				// Get the URL of the jumpTo page
+				if (!isset($arrProcessed[$objProjectCategory->jumpTo]))
+				{
+					$objParent = \PageModel::findWithDetails($objProjectCategory->jumpTo);
+
+					// The target page does not exist
+					if ($objParent === null)
+					{
+						continue;
+					}
+
+					// The target page has not been published (see #5520)
+					if (!$objParent->published || ($objParent->start != '' && $objParent->start > $time) || ($objParent->stop != '' && $objParent->stop < $time))
+					{
+						continue;
+					}
+
+					// The target page is exempt from the sitemap (see #6418)
+					if ($blnIsSitemap && $objParent->sitemap == 'map_never')
+					{
+						continue;
+					}
+
+					// Set the domain (see #6421)
+					$domain = ($objParent->rootUseSSL ? 'https://' : 'http://') . ($objParent->domain ?: \Environment::get('host')) . TL_PATH . '/';
+
+					// Generate the URL
+					$arrProcessed[$objProjectCategory->jumpTo] = $domain . $this->generateFrontendUrl($objParent->row(), ((\Config::get('useAutoItem') && !\Config::get('disableAlias')) ?  '/%s' : '/items/%s'), $objParent->language);
+				}
+
+				$strUrl = $arrProcessed[$objProjectCategory->jumpTo];
+
+				// Get the items
+				$objProject = \PortfolioProjectModel::findPublishedByPid($objProjectCategory->id);
+
+				if ($objProject !== null)
+				{
+					while ($objProject->next())
+					{
+						$arrPages[] = sprintf($strUrl, (($objProject->alias != '' && !\Config::get('disableAlias')) ? $objProject->alias : $objProject->id));
 					}
 				}
 			}
 		}
 
 		return $arrPages;
-	}
-
-
-	/**
-	 * Return the link of a portfolio
-	 * @param object
-	 * @param string
-	 * @param string
-	 * @return string
-	 */
-	protected function getLink($objItem, $strUrl, $strBase='')
-	{
-		switch ($objItem->source)
-		{
-			// Link to an external page
-			case 'external':
-				return $objItem->url;
-				break;
-
-			// Link to an internal page
-			case 'internal':
-				if (($objTarget = $objItem->getRelated('jumpTo')) !== null)
-				{
-					return $strBase . $this->generateFrontendUrl($objTarget->row());
-				}
-				break;
-
-			// Link to an article
-			case 'article':
-				if (($objArticle = \ArticleModel::findByPk($objItem->articleId, array('eager'=>true))) !== null && ($objPid = $objArticle->getRelated('pid')) !== null)
-				{
-					return $strBase . ampersand($this->generateFrontendUrl($objPid->row(), '/articles/' . ((!$GLOBALS['TL_CONFIG']['disableAlias'] && $objArticle->alias != '') ? $objArticle->alias : $objArticle->id)));
-				}
-				break;
-		}
-
-		// Link to the default page
-		return $strBase . sprintf($strUrl, (($objItem->alias != '' && !$GLOBALS['TL_CONFIG']['disableAlias']) ? $objItem->alias : $objItem->id));
 	}
 
 }
