@@ -1,8 +1,8 @@
 {
-    "name": "respinar/portfolio",
+    "name":"respinar/portfolio",
     "description":"Portfolio module for Contao",
     "keywords":["contao","portfolio","customer","projects"],
-    "type": "contao-module",
+    "type":"contao-module",
     "homepage":"https://github.com/respinar/portfolio",
     "license":"LGPL-3.0+",
     "authors":[
@@ -18,7 +18,8 @@
     },
     "require": {
         "php":">=5.3.2",
-        "contao/core":">=3.2,<4-dev"
+        "contao/core":">=3.2,<4-dev",
+        "contao-community-alliance/composer-plugin": "~2.0"
     },
     "autoload": {
         "classmap": [""]
@@ -29,7 +30,7 @@
                 "": "system/modules/portfolio"
             },
             "transifex": {
-                "project": "portfolio",
+                "project": "contao-portfolio",
                 "prefix": "master-",
                 "languages_cto": "languages",
                 "languages_tx": ".tx"
