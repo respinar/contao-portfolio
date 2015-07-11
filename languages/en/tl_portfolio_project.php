@@ -15,9 +15,9 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_portfolio_project']['title']       = array('Title', 'Please enter the project title.');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['alias']       = array('Alias', 'Please enter the alias.');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['link']        = array('Project website', 'Please enter the project website URL.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['title']       = array('Project title', 'Please enter the project title.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['alias']       = array('Alias', 'Please enter the project alias.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['link']        = array('Project website', 'Please enter the project website URL (http://...).');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['addImage']    = array('Add an image', 'Add an image to the project item.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC']   = array('Image source file', 'Please select an image.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['description'] = array('Description', 'Please enter the description.');

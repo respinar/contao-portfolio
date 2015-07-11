@@ -16,7 +16,7 @@
  * Fields
  */
 $GLOBALS['TL_LANG']['tl_portfolio_project_category']['title']     = array('Project category title', 'Please enter the project category title.');
-$GLOBALS['TL_LANG']['tl_portfolio_project_category']['alias']     = array('Alias', 'Please enter the alias.');
+$GLOBALS['TL_LANG']['tl_portfolio_project_category']['alias']     = array('Alias', 'Please enter the project category alias.');
 $GLOBALS['TL_LANG']['tl_portfolio_project_category']['jumpTo']    = array('Project redirect page', 'Please choose the project detail page to which visitors will be redirected when clicking a project item.');
 $GLOBALS['TL_LANG']['tl_portfolio_project_category']['protected'] = array('Protect category', 'Show Portfolio items to certain member groups only.');
 $GLOBALS['TL_LANG']['tl_portfolio_project_category']['groups']    = array('Allowed member groups', 'These groups will be able to see the Portfolio items in this category.');

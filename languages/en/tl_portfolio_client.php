@@ -15,10 +15,10 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_portfolio_client']['title']       = array('Title', 'Please enter the client title.');
-$GLOBALS['TL_LANG']['tl_portfolio_client']['alias']       = array('Alias', 'Please enter the alias.');
+$GLOBALS['TL_LANG']['tl_portfolio_client']['title']       = array('Client title', 'Please enter the client title.');
+$GLOBALS['TL_LANG']['tl_portfolio_client']['alias']       = array('Alias', 'Please enter the client alias.');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['date']        = array('Date', 'Please enter the date according to the global date format.');
-$GLOBALS['TL_LANG']['tl_portfolio_client']['link']        = array('URL', 'Please enter the client website URL.');
+$GLOBALS['TL_LANG']['tl_portfolio_client']['link']        = array('URL', 'Please enter the client website URL (http://...). ');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['singleSRC']   = array('Logo', 'Please select an image.');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['description'] = array('Description', 'Please enter the description.');
 $GLOBALS['TL_LANG']['tl_portfolio_client']['addEnclosure']= array('Add enclosures', 'Add one or more downloadable files to the client item.');
