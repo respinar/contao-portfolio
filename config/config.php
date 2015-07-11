@@ -19,12 +19,12 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 (
 	'portfolio' => array
 	(
-		'client' => array
+		'clients' => array
 		(
 			'tables' => array('tl_portfolio_client_category','tl_portfolio_client'),
 			'icon'   => 'system/modules/portfolio/assets/clients.png'
 		),
-		'project' => array
+		'projects' => array
 		(
 			'tables' => array('tl_portfolio_project_category','tl_portfolio_project'),
 			'icon'   => 'system/modules/portfolio/assets/projects.png'

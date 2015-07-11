@@ -20,11 +20,11 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_list']    = '{titl
                                                                            {portfolio_legend},portfolio_client_categories;
                                                                            {config_legend},client_detailModule;
                                                                            {template_legend},client_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
-                                                                           {client_legend},client_template,client_perRow,client_class,client_imgSize,show_title;
+                                                                           {clients_legend},client_template,client_perRow,client_class,client_imgSize,show_title;
                                                                            {protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_detail']  = '{title_legend},name,headline,type;
                                                                            {portfolio_legend},portfolio_client_categories;
-                                                                           {client_legend},client_template,client_imgSize;
+                                                                           {clients_legend},client_template,client_imgSize;
                                                                            {projects_legend},project_show,project_template,project_perRow,project_class,project_imgSize;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
@@ -34,13 +34,13 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']   = '{titl
                                                                            {projects_legend},project_detailModule;
                                                                            {config_legend},projects_detailModule;
                                                                            {template_legend:hide},project_status,project_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
-                                                                           {project_legend},project_template,project_perRow,project_class,project_imgSize;
+                                                                           {projects_legend},project_template,project_perRow,project_class,project_imgSize;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail'] = '{title_legend},name,headline,type;
                                                                            {portfolio_legend},portfolio_project_categories;
                                                                            {template_legend:hide},project_template,project_imgSize;
-                                                                           {clients_legend},client_show,client_template,client_imgSize;
+                                                                           {client_legend},client_show,client_template,client_imgSize;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
 
@@ -288,4 +288,3 @@ class tl_module_portfolio extends Backend
 	}
 
 }
-

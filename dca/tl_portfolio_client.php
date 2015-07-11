@@ -118,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_client'] = array
 	'palettes' => array
 	(
 		'__selector__'                => array('addEnclosure','published'),
-		'default'                     => '{title_legend},title,alias,date;{image_legend},singleSRC;{description_legend},description;{meta_legend},link,featured;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+		'default'                     => '{title_legend},title,alias,date,featured;{logo_legend},singleSRC;{website_legend},link;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
 	),
 
 	// Subpalettes
