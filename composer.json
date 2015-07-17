@@ -1,9 +1,9 @@
 {
-    "name": "respinar/portfolio",
+    "name": "respinar/contao-portfolio",
     "description": "Portfolio module for Contao",
     "keywords": ["contao", "portfolio", "customer", "projects"],
     "type": "contao-module",
-    "homepage": "https://github.com/respinar/portfolio",
+    "homepage": "https://github.com/respinar/contao-portfolio",
     "license": "LGPL-3.0+",
     "authors": [
         {
@@ -14,7 +14,7 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/respinar/portfolio/issues"
+        "issues": "https://github.com/respinar/contao-portfolio/issues"
     },
     "require": {
         "php": ">=5.3.2",
