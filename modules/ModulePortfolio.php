@@ -232,7 +232,8 @@ abstract class ModulePortfolio extends \Module
 				}
 
 				$strLightboxId = 'lightbox[lb' . $this->id . ']';
-				$arrProduct['fullsize'] = $this->fullsize;
+				$arrClient['alt'] = $objClient->title;
+				$arrClient['fullsize'] = $this->fullsize;
 				$arrClient['singleSRC'] = $objModel->path;
 				$this->addImageToTemplate($objTemplate, $arrClient,null, $strLightboxId);
 			}
@@ -296,6 +297,7 @@ abstract class ModulePortfolio extends \Module
 				}
 
 				$arrProject['singleSRC'] = $objModel->path;
+				$arrProject['alt'] = $objProject->title;
 				$this->addImageToTemplate($objTemplate, $arrProject);
 			}
 		}
