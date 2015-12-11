@@ -5,7 +5,7 @@
   <?php if (empty($this->clients)): ?>
     <p class="empty"><?php echo $this->empty; ?></p>
   <?php else: ?>
-    <?php echo implode('', $this->clients); ?>
+    <?php foreach($this->clients as $clients) { echo '<div class="row">'.implode('', $clients).'</div>'; } ?>
     <?php echo $this->pagination; ?>
   <?php endif; ?>
 

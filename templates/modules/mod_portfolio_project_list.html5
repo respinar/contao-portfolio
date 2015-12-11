@@ -5,7 +5,7 @@
   <?php if (empty($this->projects)): ?>
     <p class="empty"><?php echo $this->empty; ?></p>
   <?php else: ?>
-    <?php echo implode('', $this->projects); ?>
+    <?php foreach($this->projects as $projects) { echo '<div class="row">'.implode('', $projects).'</div>'; } ?>
     <?php echo $this->pagination; ?>
   <?php endif; ?>
 

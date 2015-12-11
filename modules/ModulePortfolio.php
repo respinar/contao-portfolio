@@ -142,6 +142,8 @@ abstract class ModulePortfolio extends \Module
 		{
 			$arrClients[] = $this->parseClient($objClients, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % $this->client_perRow) == 0) ? ' last_col' : '') . ((($count % $this->client_perRow) == 1) ? ' first_col' : ''), $count);
 		}
+		
+		$arrClients = array_chunk($arrClients,$this->client_perRow);
 
 		return $arrClients;
 	}
@@ -168,7 +170,9 @@ abstract class ModulePortfolio extends \Module
 		{
 			$arrProjects[] = $this->parseProject($objProjects, $blnAddCategory, ((++$count == 1) ? ' first' : '') . (($count == $limit) ? ' last' : '') . ((($count % $this->project_perRow) == 0) ? ' last_col' : '') . ((($count % $this->project_perRow) == 1) ? ' first_col' : ''), $count);
 		}
-
+		
+		$arrProjects = array_chunk($arrProjects,$this->project_perRow);
+		
 		return $arrProjects;
 	}
 
