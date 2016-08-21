@@ -23,6 +23,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
   (
     'dataContainer'               => 'Table',
     'ptable'                      => 'tl_portfolio_project_category',
+    'ctable'                      => array('tl_content'),
     'switchToEdit'                => true,
     'enableVersioning'            => true,
     'sql' => array
@@ -62,9 +63,15 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
       'edit' => array
       (
         'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['edit'],
-        'href'                => 'act=edit',
+        'href'                => 'table=tl_content',
         'icon'                => 'edit.gif'
       ),
+      'editheader' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['editheader'],
+				'href'                => 'act=edit',
+				'icon'                => 'header.gif'
+			),
       'copy' => array
       (
         'label'               => &$GLOBALS['TL_LANG']['tl_portfolio_project']['copy'],
@@ -111,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
   'palettes' => array
   (
     '__selector__'                => array('addImage','addEnclosure','published'),
-    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status;{image_legend},addImage;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status;{image_legend},addImage,alt;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
   ),
 
   // Subpalettes
@@ -195,6 +202,15 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
       'eval'                    => array('mandatory'=>true,'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
       'sql'                     => "binary(16) NULL"
     ),
+    'alt' => array
+		(
+			'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['alt'],
+			'exclude'                 => true,
+			'search'                  => true,
+			'inputType'               => 'text',
+			'eval'                    => array('maxlength'=>255, 'tl_class'=>'long'),
+			'sql'                     => "varchar(255) NOT NULL default ''"
+		),
     'link' => array
     (
       'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['link'],
@@ -226,12 +242,12 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
     ),
     'description' => array
     (
-      'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['description'],
-      'exclude'                 => true,
-      'search'                  => true,
-      'inputType'               => 'textarea',
-      'eval'                    => array('rte'=>'tinyMCE'),
-      'sql'                     => "text NULL"
+     'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['description'],
+			'exclude'                 => true,
+			'inputType'               => 'textarea',
+			'search'                  => true,
+			'eval'                    => array('style'=>'height:60px', 'decodeEntities'=>true, 'tl_class'=>'clr'),
+			'sql'                     => "text NULL"
     ),
     'addEnclosure' => array
     (

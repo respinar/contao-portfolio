@@ -236,7 +236,6 @@ abstract class ModulePortfolio extends \Module
 				}
 
 				$strLightboxId = 'lightbox[lb' . $this->id . ']';
-				$arrClient['alt'] = $objClient->title;
 				$arrClient['fullsize'] = $this->fullsize;
 				$arrClient['singleSRC'] = $objModel->path;
 				$this->addImageToTemplate($objTemplate, $arrClient,null, $strLightboxId);
@@ -301,9 +300,29 @@ abstract class ModulePortfolio extends \Module
 				}
 
 				$arrProject['singleSRC'] = $objModel->path;
-				$arrProject['alt'] = $objProject->title;
-				$this->addImageToTemplate($objTemplate, $arrProject);
+				$strLightboxId = 'lightbox[lb' . $objProject->id . ']';
+				$arrProject['fullsize'] = $this->fullsize;
+				$this->addImageToTemplate($objTemplate, $arrProject, null, $strLightboxId);
 			}
+		}
+
+		$objElement = \ContentModel::findPublishedByPidAndTable($objProject->id, 'tl_portfolio_project');
+
+		if ($objElement !== null)
+		{
+			while ($objElement->next())
+			{
+				$objTemplate->text .= $this->getContentElement($objElement->current());
+			}
+		}
+
+
+		$objTemplate->enclosure = array();
+
+		// Add enclosures
+		if ($objProject->addEnclosure)
+		{
+			$this->addEnclosuresToTemplate($objTemplate, $objProject->row());
 		}
 
 		return $objTemplate->parse();
@@ -332,7 +351,7 @@ abstract class ModulePortfolio extends \Module
 		// Link to the default page
 		if (self::$arrUrlCache[$strCacheKey] === null)
 		{
-			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpToClient);
+			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpTo);
 
 			if ($objPage === null)
 			{
@@ -389,7 +408,7 @@ abstract class ModulePortfolio extends \Module
 		// Link to the default page
 		if (self::$arrUrlCache[$strCacheKey] === null)
 		{
-			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpToProject);
+			$objPage = \PageModel::findByPk($objItem->getRelated('pid')->jumpTo);
 
 			if ($objPage === null)
 			{

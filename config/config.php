@@ -26,7 +26,7 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 		),
 		'projects' => array
 		(
-			'tables' => array('tl_portfolio_project_category','tl_portfolio_project'),
+			'tables' => array('tl_portfolio_project_category','tl_portfolio_project','tl_content'),
 			'icon'   => 'system/modules/portfolio/assets/projects.png'
 		)
 	)
