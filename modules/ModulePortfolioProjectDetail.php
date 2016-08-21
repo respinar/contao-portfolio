@@ -104,8 +104,6 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		$arrProject = $this->parseProject($objProject);
 		$this->Template->project = $arrProject;
 
-		echo $objProject->clientID;
-
 		// Get the Client items
 		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_project_categories);
 
