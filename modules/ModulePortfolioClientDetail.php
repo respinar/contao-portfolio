@@ -121,6 +121,11 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 			$objPage->pageTitle = strip_tags(strip_insert_tags($objClient->title));
 		}
 
+		// Overwrite the page description
+		if ($objClient->description != '')
+		{
+			$objPage->description = $this->prepareMetaDescription($objClient->description);
+		}
 
 
 	}

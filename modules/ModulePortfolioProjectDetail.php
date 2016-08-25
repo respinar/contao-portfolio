@@ -119,5 +119,11 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 			$objPage->pageTitle = strip_tags(strip_insert_tags($objProject->title));
 		}
 
+		// Overwrite the page description
+		if ($objProject->description != '')
+		{
+			$objPage->description = $this->prepareMetaDescription($objProject->description);
+		}
+
 	}
 }
