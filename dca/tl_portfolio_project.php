@@ -118,13 +118,13 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
   'palettes' => array
   (
     '__selector__'                => array('addImage','addEnclosure','published'),
-    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status;{image_legend},addImage,alt;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status,province,city;{image_legend},addImage;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
   ),
 
   // Subpalettes
   'subpalettes' => array
   (
-    'addImage'                    => 'singleSRC',
+    'addImage'                    => 'singleSRC,alt',
     'addEnclosure'                => 'enclosure',
     'published'                   => 'start,stop'
   ),
@@ -236,9 +236,29 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
       'search'                  => true,
       'inputType'               => 'select',
       'options'                 => array('planed', 'started', 'completed'),
-      'reference'               => &$GLOBALS['TL_LANG']['om_customers_project'],
+      'reference'               => &$GLOBALS['TL_LANG']['MSC'],
       'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
       'sql'                     => "varchar(20) NOT NULL default ''"
+    ),
+    'province' => array
+    (
+      'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['province'],
+      'exclude'                 => true,
+      'search'                  => true,
+      'inputType'               => 'select',
+      'options'                 => array('P01','P02','P03','P04','P05','P06','P07','P08','P09','P10','P11','P12','P13','P14','P15','P16','P17','P18','P19','P20','P21','P22','P23','P24','P25','P26','P27','P28','P29','P30','P31'),
+      'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+      'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
+      'sql'                     => "varchar(20) NOT NULL default ''"
+    ),
+    'city' => array
+    (
+      'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['city'],
+      'exclude'                 => true,
+      'search'                  => true,
+      'inputType'               => 'text',
+      'eval'                    => array('mandatory'=>false, 'maxlength'=>128, 'tl_class'=>'w50'),
+      'sql'                     => "varchar(255) NOT NULL default ''"
     ),
     'description' => array
     (
