@@ -25,7 +25,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_list']    = '{titl
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_detail']  = '{title_legend},name,headline,type;
                                                                            {portfolio_legend},portfolio_client_categories;
                                                                            {clients_legend},client_template,client_imgSize;
-                                                                           {projects_legend},project_show,project_template,project_perRow,project_class,project_imgSize;
+                                                                           {projects_legend},project_show;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
 
@@ -40,9 +40,15 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']   = '{titl
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail'] = '{title_legend},name,headline,type;
                                                                            {portfolio_legend},portfolio_project_categories;
                                                                            {template_legend:hide},project_template,project_imgSize;
-                                                                           {client_legend},client_show,client_template,client_imgSize;
+                                                                           {client_legend},client_show;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
+
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'client_show';
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['client_show'] = 'client_template,client_imgSize';
+
+$GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'project_show';
+$GLOBALS['TL_DCA']['tl_module']['subpalettes']['project_show'] = 'project_template,project_perRow,project_class,project_imgSize';
 
 
 
@@ -142,7 +148,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['client_show'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['client_show'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'eval'                    => array(),
+	'eval'                    => array('submitOnChange'=>true),
 	'sql'                     => "char(1) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['show_title'] = array
@@ -228,7 +234,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['project_show'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['project_show'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'eval'                    => array(),
+	'eval'                    => array('submitOnChange'=>true),
 	'sql'                     => "char(1) NOT NULL default ''"
 );
 
