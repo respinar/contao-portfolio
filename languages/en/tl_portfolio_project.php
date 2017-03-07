@@ -18,8 +18,10 @@
 $GLOBALS['TL_LANG']['tl_portfolio_project']['title']       = array('Project title', 'Please enter the project title.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['alias']       = array('Alias', 'Please enter the project alias.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['link']        = array('Project website', 'Please enter the project website URL (http://...).');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['addImage']    = array('Add an image', 'Add an image to the project item.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC']   = array('Image source file', 'Please select an image.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['alt']         = array('Alternate text', 'Here you can enter an alternate text for the image (alt attribute).');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['province']    = array('Province', 'Please select the province.');
+$GLOBALS['TL_LANG']['tl_portfolio_project']['city']        = array('City', 'Please enter the city.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['description'] = array('Description', 'Please enter the description.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['published']   = array('Publish project', 'Make the project item publicly visible on the website.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['featured']    = array('Feature project', 'Show the project item in a featured project list.');
@@ -31,6 +33,7 @@ $GLOBALS['TL_LANG']['tl_portfolio_project']['addEnclosure']= array('Add enclosur
 $GLOBALS['TL_LANG']['tl_portfolio_project']['enclosure']   = array('Enclosures', 'Please choose the files you want to attach.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['start']       = array('Show from', 'Do not show the project on the website before this day.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['stop']        = array('Show until', 'Do not show the project on the website on and after this day.');
+
 
 /**
  * Legends
