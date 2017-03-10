@@ -33,13 +33,4 @@ class PortfolioClientCategoryModel extends \Model
 	 */
 	protected static $strTable = 'tl_portfolio_client_category';
 
-	public static function findPublishedById($intId)
-	{
-		$t = static::$strTable;
-
-		$arrColumns = array("$t.id=?");
-
-		return static::findBy($arrColumns, $intId);
-	}
-
 }
