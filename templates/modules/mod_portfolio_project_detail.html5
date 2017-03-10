@@ -5,9 +5,9 @@
   <?php echo $this->project; ?>
 
 
-  <?php if ($this->customer) { ?>
-	<div class="customer">
-	<?php echo $this->customer; ?>
+  <?php if ($this->client) { ?>
+	<div class="client">
+	<?php echo $this->client; ?>
 	</div>
   <?php } ?>
 
