@@ -104,14 +104,18 @@ class ModulePortfolioProjectDetail extends \ModulePortfolio
 		$arrProject = $this->parseProject($objProject);
 		$this->Template->project = $arrProject;
 
-		// Get the Client items
-		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_project_categories);
+		if ($this->client_show)
+		{
+			// Get the Client items
+			$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias($objProject->clientID,$this->portfolio_project_categories);
 
-		$this->Template->client = '';
+			$this->Template->client = '';
 
-		if ($objClient !== null) {
-			$this->Template->client = $this->parseClient($objClient);
+			if ($objClient !== null) {
+				$this->Template->client = $this->parseClient($objClient);
+			}
 		}
+		
 
 		// Overwrite the page title (see #2853 and #4955)
 		if ($objProject->title != '')

@@ -5,7 +5,7 @@
   <?php echo $this->project; ?>
 
 
-  <?php if ($this->client) { ?>
+  <?php if ($this->client_show) { ?>
 	<div class="client">
 	<?php echo $this->client; ?>
 	</div>
