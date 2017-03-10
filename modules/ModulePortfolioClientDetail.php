@@ -85,6 +85,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 		$this->Template->client = '';
 		$this->Template->referer = 'javascript:history.go(-1)';
 		$this->Template->back = $GLOBALS['TL_LANG']['MSC']['goBack'];
+		$this->Template->project_headline = $GLOBALS['TL_LANG']['MSC']['project_headline'];
 
 
 		// Get the clients item
@@ -105,16 +106,20 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 		$arrClient = $this->parseClient($objClient);
 		$this->Template->clients = $arrClient;
 
-		// Get the projects items
-		$objProjects = \PortfolioProjectModel::findPublishedByClientId($objClient->id);
+		if ($this->project_show == '1')
+		{
+			// Get the projects items
+			$objProjects = \PortfolioProjectModel::findPublishedByClientId($objClient->id);
 
-		$this->Template->projects = '';
+			$this->Template->projects = '';
 
-		if ($objProjects !== null) {
-			$arrProjects = $this->parseProjects($objProjects);
-			$this->Template->projects = $arrProjects;
+			if ($objProjects !== null) {
+				$arrProjects = $this->parseProjects($objProjects);
+				$this->Template->projects = $arrProjects;
+			}
 		}
 
+		
 		// Overwrite the page title (see #2853 and #4955)
 		if ($objClient->title != '')
 		{

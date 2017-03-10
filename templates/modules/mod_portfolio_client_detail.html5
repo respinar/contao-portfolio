@@ -2,16 +2,17 @@
 
 <?php $this->block('content'); ?>
 
-  <?php echo $this->clients; ?>
+  <?= $this->clients; ?>
 
 <div class="project_list">
   <?php if($this->projects) { ?>
-  <?php echo implode('', $this->projects); ?>
+  <h2><?= $this->project_headline ?></h2>
+  <?php foreach($this->projects as $projects) { echo '<div class="row">'.implode('', $projects).'</div>'; } ?>
   <?php } ?>
 </div>
 
   <!-- indexer::stop -->
-  <p class="back"><a href="<?php echo $this->referer; ?>" title="<?php echo $this->back; ?>"><?php echo $this->back; ?></a></p>
+  <p class="back"><a href="<?= $this->referer; ?>" title="<?= $this->back; ?>"><?= $this->back; ?></a></p>
   <!-- indexer::continue -->
 
 <?php $this->endblock(); ?>
