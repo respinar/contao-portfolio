@@ -106,7 +106,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 		$arrClient = $this->parseClient($objClient);
 		$this->Template->clients = $arrClient;
 
-		if ($this->project_show == '1')
+		if ($this->project_show)
 		{
 			// Get the projects items
 			$objProjects = \PortfolioProjectModel::findPublishedByClientId($objClient->id);

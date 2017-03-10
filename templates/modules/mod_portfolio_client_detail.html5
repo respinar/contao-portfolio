@@ -4,12 +4,15 @@
 
   <?= $this->clients; ?>
 
-<div class="project_list">
-  <?php if($this->projects) { ?>
-  <h2><?= $this->project_headline ?></h2>
-  <?php foreach($this->projects as $projects) { echo '<div class="row">'.implode('', $projects).'</div>'; } ?>
-  <?php } ?>
-</div>
+
+<?php if ($this->project_show): ?>
+  <div class="project_list">
+    <?php if($this->projects) { ?>
+    <h2><?= $this->project_headline ?></h2>
+    <?php foreach($this->projects as $projects) { echo '<div class="row">'.implode('', $projects).'</div>'; } ?>
+    <?php } ?>
+  </div>
+<?php endif; ?>
 
   <!-- indexer::stop -->
   <p class="back"><a href="<?= $this->referer; ?>" title="<?= $this->back; ?>"><?= $this->back; ?></a></p>
