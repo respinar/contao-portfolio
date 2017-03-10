@@ -28,6 +28,8 @@ ClassLoader::addClasses(array
 	'portfolio\PortfolioClientModel'          => 'system/modules/portfolio/models/PortfolioClientModel.php',
 	'portfolio\PortfolioClientCategoryModel'  => 'system/modules/portfolio/models/PortfolioClientCategoryModel.php',
 	'portfolio\PortfolioProjectCategoryModel' => 'system/modules/portfolio/models/PortfolioProjectCategoryModel.php',
+	'portfolio\PortfolioProvinceModel'        => 'system/modules/portfolio/models/PortfolioProvinceModel.php',
+
 
 	// Modules
 	'portfolio\ModulePortfolioProjectList'    => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',

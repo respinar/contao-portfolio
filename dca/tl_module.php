@@ -30,7 +30,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_detail']  = '{titl
                                                                            {expert_legend:hide},guests,cssID,space';
 
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']   = '{title_legend},name,headline,type;
-                                                                           {portfolio_legend},portfolio_project_categories;
+                                                                           {portfolio_legend},portfolio_project_categories,portfolio_project_province;
                                                                            {projects_legend},project_detailModule;
                                                                            {config_legend},projects_detailModule;
                                                                            {template_legend:hide},project_status,project_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
@@ -71,6 +71,15 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_project_categories'] = arra
 	'inputType'            => 'checkbox',
 	'foreignKey'           => 'tl_portfolio_project_category.title',
 	'eval'                 => array('multiple'=>true, 'mandatory'=>true),
+    'sql'                  => "blob NULL"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_project_province'] = array
+(
+	'label'                => &$GLOBALS['TL_LANG']['tl_module']['portfolio_project_province'],
+	'exclude'              => true,
+	'inputType'            => 'select',
+	'foreignKey'           => 'tl_portfolio_province.title',
+	'eval'                 => array('includeBlankOption'=>true),
     'sql'                  => "blob NULL"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_sortBy'] = array
