@@ -5,7 +5,7 @@
   <?php if (empty($this->clients)): ?>
     <p class="empty"><?= $this->empty; ?></p>
   <?php else: ?>
-    <div class="class="clients_list <?= $this->portfolio_list_class; ?>"">
+    <div class="clients_list <?= $this->portfolio_list_class; ?>">
       <?= implode('', $this->clients); ?>
     </div>
     <?= $this->pagination; ?>
