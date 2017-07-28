@@ -3,10 +3,12 @@
 <?php $this->block('content'); ?>
 
   <?php if (empty($this->clients)): ?>
-    <p class="empty"><?php echo $this->empty; ?></p>
+    <p class="empty"><?= $this->empty; ?></p>
   <?php else: ?>
-    <?php foreach($this->clients as $clients) { echo '<div class="row">'.implode('', $clients).'</div>'; } ?>
-    <?php echo $this->pagination; ?>
+    <div class="class="clients_list <?= $this->portfolio_list_class; ?>"">
+      <?= implode('', $this->clients); ?>
+    </div>
+    <?= $this->pagination; ?>
   <?php endif; ?>
 
 <?php $this->endblock(); ?>

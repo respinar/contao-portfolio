@@ -20,7 +20,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_list']    = '{titl
                                                                            {portfolio_legend},portfolio_client_categories;
                                                                            {config_legend},client_detailModule;
                                                                            {template_legend},client_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
-                                                                           {clients_legend},client_template,client_perRow,client_class,client_imgSize,show_title;
+                                                                           {clients_legend},client_template,client_imgSize,portfolio_list_class,client_class,show_title;
                                                                            {protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_client_detail']  = '{title_legend},name,headline,type;
                                                                            {portfolio_legend},portfolio_client_categories;
@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_list']   = '{titl
                                                                            {projects_legend},project_detailModule;
                                                                            {config_legend},projects_detailModule;
                                                                            {template_legend:hide},project_status,project_featured,numberOfItems,perPage,skipFirst,portfolio_sortBy;
-                                                                           {projects_legend},project_template,project_perRow,project_class,project_imgSize;
+                                                                           {projects_legend},project_template,project_imgSize,portfolio_list_class,project_class;
                                                                            {protected_legend:hide},protected;
                                                                            {expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['portfolio_project_detail'] = '{title_legend},name,headline,type;
@@ -93,6 +93,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_sortBy'] = array
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(16) NOT NULL default ''"
 );
+$GLOBALS['TL_DCA']['tl_module']['fields']['portfolio_list_class'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['portfolio_list_class'],
+	'exclude'                 => true,
+	'inputType'               => 'text',
+	'eval'                    => array('maxlength'=>128, 'tl_class'=>'w50'),
+	'sql'                     => "varchar(255) NOT NULL default ''"
+);
 $GLOBALS['TL_DCA']['tl_module']['fields']['client_featured'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['client_featured'],
@@ -141,16 +149,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['client_template'] = array
 	'options_callback'        => array('tl_module_portfolio', 'getClientTemplates'),
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(32) NOT NULL default ''"
-);
-$GLOBALS['TL_DCA']['tl_module']['fields']['client_perRow'] = array
-(
-	'label'                => &$GLOBALS['TL_LANG']['tl_module']['client_perRow'],
-	'default'              => '4',
-	'exclude'              => true,
-	'inputType'            => 'select',
-	'options'              => array('1','2','3','4','6','12'),
-	'eval'                 => array('tl_class'=>'w50'),
-    'sql'                  => "varchar(64) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['client_show'] = array
 (
@@ -227,16 +225,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['project_imgSize'] = array
 	'reference'               => &$GLOBALS['TL_LANG']['MSC'],
 	'eval'                    => array('rgxp'=>'digit', 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''"
-);
-$GLOBALS['TL_DCA']['tl_module']['fields']['project_perRow'] = array
-(
-	'label'                => &$GLOBALS['TL_LANG']['tl_module']['project_perRow'],
-	'default'              => '4',
-	'exclude'              => true,
-	'inputType'            => 'select',
-	'options'              => array('1','2','3','4','6','12'),
-	'eval'                 => array('tl_class'=>'w50'),
-    'sql'                  => "varchar(64) NOT NULL default ''"
 );
 $GLOBALS['TL_DCA']['tl_module']['fields']['project_show'] = array
 (
