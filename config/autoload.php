@@ -13,7 +13,7 @@
  * Register PSR-0 namespaces
  */
  if (class_exists('NamespaceClassLoader')) {
-    NamespaceClassLoader::add('Respinar\Portfolio', 'system/modules/portfolio/library');
+    NamespaceClassLoader::add('Respinar\Portfolio', 'system/modules/portfolio/src');
 }
 
 
