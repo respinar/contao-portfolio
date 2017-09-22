@@ -15,7 +15,7 @@
 /**
  * Namespace
  */
-namespace portfolio;
+namespace Respinar\Portfolio\Frontend\Module;
 
 
 /**
