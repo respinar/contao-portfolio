@@ -17,6 +17,10 @@
  */
 namespace Respinar\Portfolio\Frontend\Module;
 
+use Respinar\Portfolio\Model\PortfolioClientModel;
+use Respinar\Portfolio\Model\PortfolioProjectModel;
+use Respinar\Portfolio\Frontend\Module\ModulePortfolio;
+
 
 /**
  * Class ModulePortfolioClientDetail
@@ -25,7 +29,7 @@ namespace Respinar\Portfolio\Frontend\Module;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioClientDetail extends \ModulePortfolio
+class ModulePortfolioClientDetail extends ModulePortfolio
 {
 
 	/**
@@ -89,7 +93,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 
 
 		// Get the clients item
-		$objClient = \PortfolioClientModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_client_categories);
+		$objClient = PortfolioClientModel::findPublishedByParentAndIdOrAlias(\Input::get('items'), $this->portfolio_client_categories);
 
 		if ($objClient === null)
 		{
@@ -109,7 +113,7 @@ class ModulePortfolioClientDetail extends \ModulePortfolio
 		if ($this->project_show)
 		{
 			// Get the projects items
-			$objProjects = \PortfolioProjectModel::findPublishedByClientId($objClient->id);
+			$objProjects = PortfolioProjectModel::findPublishedByClientId($objClient->id);
 
 			$this->Template->projects = '';
 

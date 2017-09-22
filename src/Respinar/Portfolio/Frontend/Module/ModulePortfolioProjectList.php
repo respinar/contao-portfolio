@@ -17,6 +17,8 @@
  */
 namespace Respinar\Portfolio\Frontend\Module;
 
+use Respinar\Portfolio\Model\PortfolioProjectModel;
+use Respinar\Portfolio\Frontend\Module\ModulePortfolio;
 
 /**
  * Class ModulePortfolioProjectList
@@ -25,7 +27,7 @@ namespace Respinar\Portfolio\Frontend\Module;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioProjectList extends \ModulePortfolio
+class ModulePortfolioProjectList extends ModulePortfolio
 {
 
 	/**
@@ -103,7 +105,7 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		$this->Template->projects = array();
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyProjectList'];
 
-		$intTotal = \PortfolioProjectModel::countPublishedByPids($this->portfolio_project_categories,$blnFeatured);
+		$intTotal = PortfolioProjectModel::countPublishedByPids($this->portfolio_project_categories,$blnFeatured);
 
 		// Return if no Projects were found
 		if ($intTotal < 1)
@@ -157,11 +159,11 @@ class ModulePortfolioProjectList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, $limit, $offset);
+			$objProjects = PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objProjects = \PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, 0, $offset);
+			$objProjects = PortfolioProjectModel::findPublishedByPids($this->portfolio_project_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found

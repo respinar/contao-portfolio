@@ -17,6 +17,12 @@
  */
 namespace Respinar\Portfolio\Frontend\Module;
 
+use Respinar\Portfolio\Model\PortfolioClientModel;
+use Respinar\Portfolio\Model\PortfolioClientCategoryModel;
+use Respinar\Portfolio\Model\PortfolioProjectModel;
+use Respinar\Portfolio\Model\PortfolioProjectCategoryModel;
+
+
 
 /**
  * Class ModulePortfolio
@@ -47,7 +53,7 @@ abstract class ModulePortfolio extends \Module
 		}
 
 		$this->import('FrontendUser', 'User');
-		$objCategory = \PortfolioClientCategoryModel::findMultipleByIds($arrCategories);
+		$objCategory = PortfolioClientCategoryModel::findMultipleByIds($arrCategories);
 		$arrCategories = array();
 
 		if ($objCategory !== null)
@@ -89,7 +95,7 @@ abstract class ModulePortfolio extends \Module
 		}
 
 		$this->import('FrontendUser', 'User');
-		$objCategory = \PortfolioProjectCategoryModel::findMultipleByIds($arrCategories);
+		$objCategory = PortfolioProjectCategoryModel::findMultipleByIds($arrCategories);
 		$arrCategories = array();
 
 		if ($objCategory !== null)

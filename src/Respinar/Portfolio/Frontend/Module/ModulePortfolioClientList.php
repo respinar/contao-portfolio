@@ -17,6 +17,8 @@
  */
 namespace Respinar\Portfolio\Frontend\Module;
 
+use Respinar\Portfolio\Model\PortfolioClientModel;
+use Respinar\Portfolio\Frontend\Module\ModulePortfolio;
 
 /**
  * Class ModulePortfolioClientList
@@ -25,7 +27,7 @@ namespace Respinar\Portfolio\Frontend\Module;
  * @author     Hamid Abbaszadeh
  * @package    Devtools
  */
-class ModulePortfolioClientList extends \ModulePortfolio
+class ModulePortfolioClientList extends ModulePortfolio
 {
 
 	/**
@@ -104,7 +106,7 @@ class ModulePortfolioClientList extends \ModulePortfolio
 		$this->Template->empty = $GLOBALS['TL_LANG']['MSC']['emptyClientList'];
 
 		// Get the total number of items
-		$intTotal = \PortfolioClientModel::countPublishedByPids($this->portfolio_client_categories, $blnFeatured);
+		$intTotal = PortfolioClientModel::countPublishedByPids($this->portfolio_client_categories, $blnFeatured);
 
 		if ($intTotal < 1)
 		{
@@ -158,11 +160,11 @@ class ModulePortfolioClientList extends \ModulePortfolio
 		// Get the items
 		if (isset($limit))
 		{
-			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, $limit, $offset);
+			$objClients = PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, $limit, $offset);
 		}
 		else
 		{
-			$objClients = \PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, 0, $offset);
+			$objClients = PortfolioClientModel::findPublishedByPids($this->portfolio_client_categories, $blnFeatured, 0, $offset);
 		}
 
 		// No items found
