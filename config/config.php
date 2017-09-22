@@ -46,14 +46,14 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 (
 	'portfolio' => array
 	(
-		'portfolio_client_list'    => 'ModulePortfolioClientList',
-		'portfolio_client_detail'  => 'ModulePortfolioClientDetail',
-		'portfolio_project_list'   => 'ModulePortfolioProjectList',
-		'portfolio_project_detail' => 'ModulePortfolioProjectDetail'
+		'portfolio_client_list'    => 'Respinar\Portfolio\Frontend\Module\ModulePortfolioClientList',
+		'portfolio_client_detail'  => 'Respinar\Portfolio\Frontend\Module\ModulePortfolioClientDetail',
+		'portfolio_project_list'   => 'Respinar\Portfolio\Frontend\Module\ModulePortfolioProjectList',
+		'portfolio_project_detail' => 'Respinar\Portfolio\Frontend\Module\ModulePortfolioProjectDetail'
 	)
 ));
 
 /**
  * Register hook to add carpets items to the indexer
  */
-$GLOBALS['TL_HOOKS']['getSearchablePages'][]     = array('Portfolio', 'getSearchablePages');
+$GLOBALS['TL_HOOKS']['getSearchablePages'][]     = array('Respinar\Portfolio', 'getSearchablePages');
