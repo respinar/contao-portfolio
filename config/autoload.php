@@ -10,37 +10,11 @@
 
 
 /**
- * Register the namespaces
+ * Register PSR-0 namespaces
  */
-ClassLoader::addNamespaces(array
-(
-	'portfolio',
-));
-
-
-/**
- * Register the classes
- */
-ClassLoader::addClasses(array
-(
-	// Models
-	'portfolio\PortfolioProjectModel'         => 'system/modules/portfolio/models/PortfolioProjectModel.php',
-	'portfolio\PortfolioClientModel'          => 'system/modules/portfolio/models/PortfolioClientModel.php',
-	'portfolio\PortfolioClientCategoryModel'  => 'system/modules/portfolio/models/PortfolioClientCategoryModel.php',
-	'portfolio\PortfolioProjectCategoryModel' => 'system/modules/portfolio/models/PortfolioProjectCategoryModel.php',
-	'portfolio\PortfolioProvinceModel'        => 'system/modules/portfolio/models/PortfolioProvinceModel.php',
-
-
-	// Modules
-	'portfolio\ModulePortfolioProjectList'    => 'system/modules/portfolio/modules/ModulePortfolioProjectList.php',
-	'portfolio\ModulePortfolio'               => 'system/modules/portfolio/modules/ModulePortfolio.php',
-	'portfolio\ModulePortfolioProjectDetail'  => 'system/modules/portfolio/modules/ModulePortfolioProjectDetail.php',
-	'portfolio\ModulePortfolioClientDetail'   => 'system/modules/portfolio/modules/ModulePortfolioClientDetail.php',
-	'portfolio\ModulePortfolioClientList'     => 'system/modules/portfolio/modules/ModulePortfolioClientList.php',
-
-	// Classes
-	'Contao\Portfolio'                        => 'system/modules/portfolio/classes/Portfolio.php',
-));
+ if (class_exists('NamespaceClassLoader')) {
+    NamespaceClassLoader::add('Respinar\Portfolio', 'system/modules/portfolio/library');
+}
 
 
 /**
