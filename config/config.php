@@ -37,11 +37,18 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 	)
 ));
 
+/**
+ * Register models
+ */
+ $GLOBALS['TL_MODELS']['tl_portfolio_client']           = 'Respinar\Portfolio\Model\PortfolioClientModel';
+ $GLOBALS['TL_MODELS']['tl_portfolio_client_category']  = 'Respinar\Portfolio\Model\PortfolioClientCategoryModel'; 
+ $GLOBALS['TL_MODELS']['tl_portfolio_project']          = 'Respinar\Portfolio\Model\PortfolioProjectModel';
+ $GLOBALS['TL_MODELS']['tl_portfolio_project_category'] = 'Respinar\Portfolio\Model\PortfolioProjectCategoryModel'; 
+ $GLOBALS['TL_MODELS']['tl_portfolio_province']         = 'Respinar\Portfolio\Model\PortfolioProvinceModel'; 
 
 /**
  * Front end modules
  */
-
 array_insert($GLOBALS['FE_MOD'], 2, array
 (
 	'portfolio' => array
