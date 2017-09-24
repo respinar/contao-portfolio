@@ -23,13 +23,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Respinar\\Portfolio\\": "src/"
+            "Respinar\\Portfolio\\": "src/library/"
         }
     },
     "extra": {
         "contao": {
             "sources": {
-                "": "system/modules/portfolio"
+                "src": "system/modules/portfolio"
             },
             "transifex": {
                 "project": "contao-portfolio",
