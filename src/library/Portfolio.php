@@ -16,6 +16,10 @@
  */
 namespace Respinar\Portfolio;
 
+use Respinar\Portfolio\Model\PortfolioClientModel;
+use Respinar\Portfolio\Model\PortfolioClientCategoryModel;
+use Respinar\Portfolio\Model\PortfolioProjectModel;
+use Respinar\Portfolio\Model\PortfolioProjectCategoryModel;
 
 /**
  * Class Portfolio
@@ -48,7 +52,7 @@ class Portfolio extends \Frontend
 		$arrProcessed = array();
 
 		// Get all client categories
-		$objClientCategory = \PortfolioClientCategoryModel::findAll();
+		$objClientCategory = PortfolioClientCategoryModel::findAll();
 
 		// Walk through each category
 		if ($objClientCategory !== null)
@@ -100,7 +104,7 @@ class Portfolio extends \Frontend
 				$strUrl = $arrProcessed[$objClientCategory->jumpTo];
 
 				// Get the items
-				$objClient = \PortfolioClientModel::findPublishedByPid($objClientCategory->id);
+				$objClient = PortfolioClientModel::findPublishedByPid($objClientCategory->id);
 
 				if ($objClient !== null)
 				{
@@ -114,7 +118,7 @@ class Portfolio extends \Frontend
 
 
 		// Get all project categories
-		$objProjectCategory = \PortfolioProjectCategoryModel::findAll();
+		$objProjectCategory = PortfolioProjectCategoryModel::findAll();
 
 		// Walk through each category
 		if ($objProjectCategory !== null)
@@ -166,7 +170,7 @@ class Portfolio extends \Frontend
 				$strUrl = $arrProcessed[$objProjectCategory->jumpTo];
 
 				// Get the items
-				$objProject = \PortfolioProjectModel::findPublishedByPid($objProjectCategory->id);
+				$objProject = PortfolioProjectModel::findPublishedByPid($objProjectCategory->id);
 
 				if ($objProject !== null)
 				{
