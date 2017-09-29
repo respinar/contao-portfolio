@@ -20,7 +20,6 @@ $GLOBALS['TL_LANG']['tl_portfolio_project']['alias']       = array('Alias', 'Ple
 $GLOBALS['TL_LANG']['tl_portfolio_project']['link']        = array('Project website', 'Please enter the project website URL (http://...).');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['singleSRC']   = array('Image source file', 'Please select an image.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['alt']         = array('Alternate text', 'Here you can enter an alternate text for the image (alt attribute).');
-$GLOBALS['TL_LANG']['tl_portfolio_project']['province']    = array('Province', 'Please select the province.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['city']        = array('City', 'Please enter the city.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['description'] = array('Description', 'Please enter the description.');
 $GLOBALS['TL_LANG']['tl_portfolio_project']['published']   = array('Publish project', 'Make the project item publicly visible on the website.');

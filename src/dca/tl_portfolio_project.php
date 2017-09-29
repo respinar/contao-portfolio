@@ -118,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
   'palettes' => array
   (
     '__selector__'                => array('addImage','addEnclosure','published'),
-    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status,province,city;{image_legend},addImage;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
+    'default'                     => '{title_legend},title,alias;{project_legend},clientID,featured,date,duration,link,status,city;{image_legend},addImage;{description_legend},description;{enclosure_legend:hide},addEnclosure;{publish_legend},published'
   ),
 
   // Subpalettes
@@ -238,16 +238,6 @@ $GLOBALS['TL_DCA']['tl_portfolio_project'] = array
       'options'                 => array('planed', 'started', 'completed'),
       'reference'               => &$GLOBALS['TL_LANG']['MSC'],
       'eval'                    => array('mandatory'=>false, 'tl_class'=>'w50'),
-      'sql'                     => "varchar(20) NOT NULL default ''"
-    ),
-    'province' => array
-    (
-      'label'                   => &$GLOBALS['TL_LANG']['tl_portfolio_project']['province'],
-      'exclude'                 => true,
-      'search'                  => true,
-      'inputType'               => 'select',
-      'foreignKey'              => 'tl_portfolio_province.title',      
-      'eval'                    => array('mandatory'=>false, 'includeBlank'=>true , 'tl_class'=>'w50'),
       'sql'                     => "varchar(20) NOT NULL default ''"
     ),
     'city' => array

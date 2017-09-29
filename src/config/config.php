@@ -28,11 +28,6 @@ array_insert($GLOBALS['BE_MOD'], 1, array
 		(
 			'tables' => array('tl_portfolio_project_category','tl_portfolio_project','tl_content'),
 			'icon'   => 'system/modules/portfolio/assets/projects.png'
-		),
-		'provinces' => array
-		(
-			'tables' => array('tl_portfolio_province'),
-			'icon'   => 'system/modules/portfolio/assets/map.png'
 		)
 	)
 ));
@@ -44,7 +39,6 @@ array_insert($GLOBALS['BE_MOD'], 1, array
  $GLOBALS['TL_MODELS']['tl_portfolio_client_category']  = 'Respinar\Portfolio\Model\PortfolioClientCategoryModel'; 
  $GLOBALS['TL_MODELS']['tl_portfolio_project']          = 'Respinar\Portfolio\Model\PortfolioProjectModel';
  $GLOBALS['TL_MODELS']['tl_portfolio_project_category'] = 'Respinar\Portfolio\Model\PortfolioProjectCategoryModel'; 
- $GLOBALS['TL_MODELS']['tl_portfolio_province']         = 'Respinar\Portfolio\Model\PortfolioProvinceModel'; 
 
 /**
  * Front end modules
