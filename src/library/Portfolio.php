@@ -1,15 +1,12 @@
 <?php
 
-/**
- * Contao Open Source CMS
+/*
+ * Portfolio module for Contao Open Source CMS.
  *
- * Copyright (c) 2005-2014 Leo Feyer
- *
- * @package portfolio
- * @link    https://contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @copyright  Copyright (c) 2014-2017, Respinar
+ * @author     Hamid Abbaszadeh <https://respinar.com>
+ * @license    GNU/LGPL-3+
  */
-
 
 /**
  * Run in a custom namespace, so the class can be replaced

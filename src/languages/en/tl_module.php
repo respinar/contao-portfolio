@@ -1,14 +1,11 @@
 <?php
 
-/**
- * Contao Open Source CMS
+/*
+ * Portfolio module for Contao Open Source CMS.
  *
- * Copyright (c) 2005-2013 Leo Feyer
- *
- * @package   projects
- * @author    Hamid Abbaszadeh
- * @license   GNU/LGPL
- * @copyright 2014
+ * @copyright  Copyright (c) 2014-2017, Respinar
+ * @author     Hamid Abbaszadeh <https://respinar.com>
+ * @license    GNU/LGPL-3+
  */
 
  /**
